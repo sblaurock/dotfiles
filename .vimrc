@@ -40,6 +40,7 @@ set t_vb= " Disable visual bell and beep
 "set cmdheight=2 " 2-line command window height
 set notimeout ttimeout ttimeoutlen=200 " Quickly time out on keycodes
 set pastetoggle=<F11> " F11 toggle between 'paste' and 'nopaste'
+set list listchars=tab:»·,trail:·,nbsp:· " Display extra whitespace
 
 " Tab settings (2 spaces)
 set shiftwidth=2
@@ -53,6 +54,12 @@ let g:airline_powerline_fonts = 1
 
 let g:gitgutter_sign_column_always = 1
 let g:gitgutter_realtime = 1
+
+" (...not so) Friendy reminders
+nnoremap <Left> :echoe "Use h (n)"<CR>
+nnoremap <Right> :echoe "Use l (u)"<CR>
+nnoremap <Up> :echoe "Use k (n)"<CR>
+nnoremap <Down> :echoe "Use j (y)"<CR>
 
 " Key remappings
 nnoremap <F3> :NumbersToggle<CR>
