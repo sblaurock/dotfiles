@@ -1,0 +1,26 @@
+[color]
+        diff = auto
+        status = auto
+        branch = auto
+        ui = true
+[user]
+        name = Steve Blaurock
+        email = sblaurock@gmail.com
+[core]
+        excludesfile = ~/.gitignore_global
+        editor = vim
+[alias]
+        undo=reset --hard
+        a=add --all
+        ca=commit -a
+        co=checkout
+        s=status
+        b=branch
+        d=diff
+        f=fetch
+        fo=fetch origin
+        fu=fetch upstream
+        l=log
+        m=merge
+[help]
+        autocorrect = 1
