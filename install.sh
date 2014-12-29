@@ -4,6 +4,7 @@ shopt -s dotglob nullglob
 
 REPO_OH_MY_FISH='https://github.com/bpinto/oh-my-fish.git'
 REPO_POWERLINE_FONTS='https://github.com/powerline/fonts.git'
+REPO_VUNDLE='https://github.com/gmarik/Vundle.vim.git'
 
 # Resolve dependency: Fish shell
 if [ ! -f /usr/local/bin/fish ] ; then
@@ -29,6 +30,11 @@ if [ ! -f "${HOME}/Library/Fonts/Anonymice Powerline.ttf" ] ; then
   cd "${HOME}/.powerline-fonts"
   ./install.sh
   rm -rf "${HOME}/.powerline-fonts"
+fi
+
+# Resolve dependency: Vundle
+if [ ! -f "${HOME}/.vim/bundle/Vundle.vim" ] ; then
+  git clone $REPO_VUNDLE ~/.vim/bundle/Vundle.vim
 fi
 
 # Copy config files to home directory.

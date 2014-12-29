@@ -1,5 +1,4 @@
 /.vim/.netrwhist
+/.vim/bundle
 /.config/fish/*
 !/.config/fish/config.fish
-/.vim/bundle/*
-!/.vim/bundle/Vundle.vim
