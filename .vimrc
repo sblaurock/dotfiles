@@ -1,8 +1,24 @@
-execute pathogen#infect()
+" Vundle
+set nocompatible
+filetype off
+set rtp+=~/.vim/bundle/Vundle.vim
+call vundle#begin()
+
+" Plugins
+Plugin 'mileszs/ack.vim'
+Plugin 'kien/ctrlp.vim'
+Plugin 'Yggdroot/indentLine'
+Plugin 'scrooloose/nerdtree'
+Plugin 'scrooloose/syntastic'
+Plugin 'bling/vim-airline'
+Plugin 'airblade/vim-gitgutter'
+Plugin 'tpope/vim-fugitive'
+Plugin 'pangloss/vim-javascript'
+
+call vundle#end()
 
 syntax on " Syntax highlighting
 filetype plugin indent on " Filetype detection
-set nocompatible " Sanely reset options
 set hidden " Allow switching from unsaved buffers
 set wildmenu " Better command-line completion
 set showcmd " Show partial commands
@@ -21,7 +37,7 @@ set laststatus=2 " Always display status line
 set confirm " Use dialog for unsaved changes
 set visualbell " Use visual bell instead of beep
 set t_vb= " Disable visual bell and beep
-set cmdheight=2 " 2-line command window height
+"set cmdheight=2 " 2-line command window height
 set notimeout ttimeout ttimeoutlen=200 " Quickly time out on keycodes
 set pastetoggle=<F11> " F11 toggle between 'paste' and 'nopaste'
 
@@ -33,6 +49,7 @@ set expandtab
 colorscheme jellybeans
 
 let g:airline#extensions#tabline#enabled = 1
+let g:airline_powerline_fonts = 1
 
 let g:gitgutter_sign_column_always = 1
 let g:gitgutter_realtime = 1
