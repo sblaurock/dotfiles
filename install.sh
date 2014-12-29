@@ -16,13 +16,17 @@ done
 
 # Resolve dependency: Fish shell
 if [ ! -f /usr/local/bin/fish ] ; then
-  brew install fish
-  echo '/usr/local/bin/fish' | sudo tee -a /etc/shells
-  if [ -f /usr/local/bin/fish ] ; then
-    chsh -s /usr/local/bin/fish
+  if [[ "$OSTYPE" = "darwin"* ]] && type brew > /dev/null ; then
+    brew install fish
+    echo '/usr/local/bin/fish' | sudo tee -a /etc/shells
+    if [ -f /usr/local/bin/fish ] ; then
+      chsh -s /usr/local/bin/fish
+    else
+      echo "Installation failed."
+      exit 1
+    fi
   else
-    echo "Installation failed."
-    exit 1
+    echo "Fish shell requires manual install."
   fi
 fi
 
