@@ -22,8 +22,8 @@ filetype plugin indent on " Filetype detection
 set encoding=utf-8 " Use UTF-8 encoding
 set modelines=0 " No file specific variables
 set hidden " Allow switching from unsaved buffers
-set wildmenu " Better command-line completion
-set wildmode=list:longest,full " ...even better command-line completion
+set wildmenu " Show command completion suggestions in status line
+set wildmode=list:longest,full " ...even better suggestions
 set showcmd " Show partial commands
 set hlsearch " Highlight searches
 set ignorecase " Case insensitive search
@@ -39,8 +39,9 @@ set nostartofline " More sane line traversing
 set ruler " Display cursor position in status line
 set laststatus=2 " Always display status line
 set confirm " Use dialog for unsaved changes
-set visualbell " Use visual bell instead of beep
-set t_vb= " Disable visual bell and beep
+set noerrorbells " No bells
+set novisualbell " ...no bells
+set t_vb= " ...seriously, no bells
 set notimeout ttimeout ttimeoutlen=200 " Quickly time out on keycodes
 set list listchars=tab:»·,trail:·,nbsp:· " Display extra whitespace
 set clipboard=unnamedplus,unnamed,autoselect " Share clipboard with OS
@@ -51,6 +52,14 @@ set cursorline " Highlight line containing cursor
 set ttyfast " Prevent slow scrolling
 set incsearch " Match on keypress instead of enter
 set nofoldenable " Disable code folding
+set shortmess=at " Shorter messages
+set whichwrap=<,>,h,l " Allow cursor to wrap across lines
+set autochdir " Automatically cd into directory of open file
+
+" Save information across sessions
+set viminfo=%,'50
+set viminfo+=\"100,:100
+set viminfo+=n~/.viminfo
 
 " Tab settings (2 spaces)
 set shiftwidth=2
