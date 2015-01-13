@@ -2,7 +2,8 @@
 
 shopt -s dotglob nullglob
 
-REPO_OH_MY_FISH='https://github.com/bpinto/oh-my-fish.git'
+ZSH='/usr/local/bin/zsh'
+REPO_PREZTO='https://github.com/sorin-ionescu/prezto.git'
 REPO_POWERLINE_FONTS='https://github.com/powerline/fonts.git'
 REPO_VUNDLE='https://github.com/gmarik/Vundle.vim.git'
 
@@ -14,26 +15,27 @@ for i in * ; do
   fi
 done
 
-# Resolve dependency: Fish shell
-if [ ! -f /usr/local/bin/fish ] ; then
+# Resolve dependency: Zsh
+if [ ! -f $ZSH ] ; then
   if [[ "$OSTYPE" = "darwin"* ]] && type brew > /dev/null ; then
-    brew install fish
-    echo '/usr/local/bin/fish' | sudo tee -a /etc/shells
-    if [ -f /usr/local/bin/fish ] ; then
-      chsh -s /usr/local/bin/fish
+    brew install zsh
+    echo $ZSH | sudo tee -a /etc/shells
+    if [ -f $ZSH ] ; then
+      chsh -s $ZSH
     else
       echo "Installation failed."
       exit 1
     fi
   else
-    echo "Fish shell requires manual install."
+    echo "Zsh requires manual install."
   fi
 fi
 
-# Resolve dependency: Oh My Fish!
-if [ ! -d "${HOME}/.oh-my-fish" ] ; then
-  git clone $REPO_OH_MY_FISH ~/.oh-my-fish
-  cp ~/.oh-my-fish/templates/config.fish ~/.config/fish/config.fish
+# Resolve dependency: Prezto
+if [ ! -d "${HOME}/.zprezto" ] ; then
+  git clone --recursive $REPO_PREZTO "${HOME}/.zprezto"
+  rm "${HOME}/.zprezto/runcoms/README.md"
+  zsh -c 'setopt EXTENDED_GLOB; for rcfile in "${ZDOTDIR:-$HOME}"/.zprezto/runcoms/* ; do ; ln -s "$rcfile" "${ZDOTDIR:-$HOME}/.${rcfile:t}" ; done'
 fi
 
 # Resolve dependency: Powerline fonts
