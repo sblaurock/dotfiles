@@ -14,6 +14,7 @@ Plugin 'bling/vim-airline'
 Plugin 'airblade/vim-gitgutter'
 Plugin 'tpope/vim-fugitive'
 Plugin 'pangloss/vim-javascript'
+Plugin 'Shougo/neocomplcache.vim'
 
 call vundle#end()
 
@@ -33,7 +34,6 @@ set shell=bash " Use Bash shell
 set t_Co=256 " 256 color mode
 set mouse=a " Enable mouse support
 set number " Show line numbers
-set relativenumber " Use relative line numbers
 set backspace=indent,eol,start " More sane backspacing
 set autoindent " Preserve line indentation settings
 set nostartofline " More sane line traversing
@@ -70,15 +70,26 @@ set expandtab
 colorscheme jellybeans
 
 " Key remappings
-nnoremap <F3> :NumbersToggle<CR>
-nnoremap <F4> :NumbersOnOff<CR>
-nnoremap <C-L> :nohl<CR><C-L>
+nnoremap <leader>h :nohl<CR><C-L>
+nnoremap <leader>p :CtrlP<CR>
+nnoremap <leader>a :Ack 
+nnoremap <leader>c :SyntasticCheck<CR>
 
 " Disable automatic comment insertion
 autocmd FileType * setlocal formatoptions-=c formatoptions-=r formatoptions-=o
 
 " Automatically 'cd' into directory of currently open file
 autocmd BufEnter * silent! lcd %:p:h
+
+" Omni completion
+autocmd FileType css setlocal omnifunc=csscomplete#CompleteCSS
+autocmd FileType html,markdown setlocal omnifunc=htmlcomplete#CompleteTags
+autocmd FileType javascript setlocal omnifunc=javascriptcomplete#CompleteJS
+
+" Syntax mapping
+au BufNewFile,BufRead *.swig setlocal ft=htmldjango
+au BufNewFile,BufRead *.json setlocal ft=javascript
+au BufNewFile,BufRead *.mh setlocal ft=mason
 
 " vim-airline
 let g:airline#extensions#tabline#enabled = 1
@@ -89,23 +100,36 @@ let g:gitgutter_sign_column_always = 1
 let g:gitgutter_realtime = 1
 
 " ctrlp.vim
-set wildignore+=*/.git/*,*/.hg/*,*/.svn/*
+set wildignore+=*/.git/*,*/.hg/*,*/.svn/*,*/tmp/*,*.so,*.swp,*.zip,*.mp3
 let g:ctrlp_regexp = 1
 let g:ctrlp_max_height = 20
-nnoremap <leader>p :CtrlP<CR>
+let g:ctrlp_working_path_mode = 'ra'
 
 " Syntastic
 let g:syntastic_enable_signs=1
 let g:syntastic_auto_jump=0
 let g:syntastic_auto_loc_list=1
-nnoremap <leader>c :SyntasticCheck<CR>
-
-" ack.vim
-nnoremap <leader>a :Ack 
 
 " indentLine
 let g:indentLine_color_term = 239
 let g:indentLine_char = '¦'
+
+" neocomplcache
+let g:neocomplcache_enable_at_startup = 1
+let g:neocomplete#sources#syntax#min_keyword_length = 3
+let g:neocomplcache_enable_ignore_case = 1
+let g:neocomplcache_enable_smart_case = 1
+let g:neocomplcache_enable_camel_case_completion = 1
+let g:neocomplcache_enable_underbar_completion = 1
+let g:neocomplcache_enable_fuzzy_completion = 1
+let g:neocomplcache_enable_insert_char_pre = 1
+let g:neocomplcache_enable_auto_select = 1
+let g:neocomplcache_max_list = 50
+inoremap <expr><TAB>  pumvisible() ? "\<Down>" : "\<TAB>"
+let g:neocomplcache_dictionary_filetype_lists = {
+  \ 'default'    : '',
+  \ 'javascript' : $HOME . '/.vim/dict/javascript.dict,' . $HOME . '/.vim/dict/jQuery.dict'
+  \ }
 
 " Restore cursor position on reopen
 function! ResCur()
