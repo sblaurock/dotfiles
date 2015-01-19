@@ -98,10 +98,14 @@ nmap <leader>f :NERDTreeTabsToggle<CR>
 nnoremap <leader>d :Gdiff<CR>
 " Next tab
 nnoremap <leader><Tab> :tabnext<CR>
+" Previous tab
+nnoremap <leader><S-Tab> :tabprevious<CR>
 " New tab
 nnoremap <leader>t :tabnew<C>
 " Close tab
 nnoremap <leader>q :tabclose<CR>
+" Move focus between windows
+nnoremap <leader>` <C-W><C-W>
 " Tabs by numbers
 noremap <leader>1 1gt
 noremap <leader>2 2gt

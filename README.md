@@ -14,6 +14,8 @@ dotfiles
 | ,c[space] | Toggle comment block |
 | ,t | New tab |
 | ,[tab] | Next tab |
+| ,[shift][tab] | Previous tab |
+| ,` | Focus next window |
 | ,q | Close tab |
 | ,[1-9] | Navigate to tab _num_ |
 | ,0 | Navigate to last tab |
