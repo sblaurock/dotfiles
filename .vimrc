@@ -9,6 +9,7 @@ Plugin 'mileszs/ack.vim'
 Plugin 'kien/ctrlp.vim'
 Plugin 'Yggdroot/indentLine'
 Plugin 'scrooloose/nerdtree'
+Plugin 'jistr/vim-nerdtree-tabs'
 Plugin 'scrooloose/syntastic'
 Plugin 'bling/vim-airline'
 Plugin 'airblade/vim-gitgutter'
@@ -59,7 +60,7 @@ set nofoldenable " Disable code folding
 set shortmess=at " Shorter messages
 set whichwrap=<,>,h,l " Allow cursor to wrap across lines
 set history=1000 " Increase command history
-set pastetoggle=<leader>v
+set pastetoggle=<leader>v " Set paste mode toggle key binding
 
 " Save information across sessions
 set viminfo=%,'50
@@ -82,11 +83,30 @@ nnoremap <leader>a :Ack
 " Check syntax
 nnoremap <leader>s :SyntasticCheck<CR>
 " Toggle indentation (tabs / spaces)
-nnoremap <leader>t :call <SID>TabToggle()<CR>
+nnoremap <leader>i :call <SID>TabToggle()<CR>
 " Paste (preserve indendation)
 inoremap <leader>v <ESC>"+p`]a
 " Yank entire file
 nnoremap <leader>y gg"+yG
+" Toggle file tree
+nmap <leader>d :NERDTreeTabsToggle<CR>
+" Next tab
+nnoremap <leader><Tab> :tabnext<CR>
+" New tab
+nnoremap <leader>t :tabnew<C>
+" Close tab
+nnoremap <leader>q :tabclose<CR>
+" Tabs by numbers
+noremap <leader>1 1gt
+noremap <leader>2 2gt
+noremap <leader>3 3gt
+noremap <leader>4 4gt
+noremap <leader>5 5gt
+noremap <leader>6 6gt
+noremap <leader>7 7gt
+noremap <leader>8 8gt
+noremap <leader>9 9gt
+noremap <leader>0 :tablast<cr>
 
 " Disable automatic comment insertion
 autocmd FileType * setlocal formatoptions-=c formatoptions-=r formatoptions-=o
@@ -103,6 +123,9 @@ autocmd FileType javascript setlocal omnifunc=javascriptcomplete#CompleteJS
 autocmd BufNewFile,BufRead *.swig setlocal ft=htmldjango
 autocmd BufNewFile,BufRead *.json setlocal ft=javascript
 autocmd BufNewFile,BufRead *.mh setlocal ft=mason
+
+" nerdtree
+let NERDTreeShowHidden=1
 
 " vim-airline
 let g:airline#extensions#tabline#enabled = 1

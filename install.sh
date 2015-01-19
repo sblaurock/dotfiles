@@ -39,13 +39,18 @@ if [ ! -f "${HOME}/Library/Fonts/Anonymice Powerline.ttf" ] ; then
   rm -rf "${HOME}/.powerline-fonts"
 fi
 
-# Copy config files to home directory.
+# Copy config files to home directory
 for i in * ; do
   if [[ $i != '.git' ]] && [[ $i != '.gitignore' ]] && [[ $i == .* ]] ; then
     rm -rf "${HOME}/${i}"
     cp -R $i "${HOME}/${i}"
   fi
 done
+
+# Create directory for Vim undo stack
+if [ ! -d "${HOME}/.vim/undo" ] ; then
+  mkdir "${HOME}/.vim/undo"
+fi
 
 # Resolve dependency: Vundle
 if [ ! -f "${HOME}/.vim/bundle/Vundle.vim" ] ; then
