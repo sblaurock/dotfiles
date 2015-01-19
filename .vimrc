@@ -62,6 +62,8 @@ set whichwrap=<,>,h,l " Allow cursor to wrap across lines
 set history=1000 " Increase command history
 set pastetoggle=<leader>v " Set paste mode toggle key binding
 
+colorscheme jellybeans
+
 " Save information across sessions
 set viminfo=%,'50
 set viminfo+=\"100,:100
@@ -72,7 +74,9 @@ set shiftwidth=2
 set softtabstop=2
 set expandtab
 
-colorscheme jellybeans
+" Preserve visual selection when indenting
+vnoremap < <gv
+vnoremap > >gv
 
 " Clear highlighted matches
 nnoremap <leader>h :nohl<CR>
@@ -83,7 +87,7 @@ nnoremap <leader>a :Ack
 " Check syntax
 nnoremap <leader>s :SyntasticCheck<CR>
 " Toggle indentation (tabs / spaces)
-nnoremap <leader>i :call <SID>TabToggle()<CR>
+nnoremap <leader>\ :call <SID>TabToggle()<CR>
 " Paste (preserve indendation)
 inoremap <leader>v <ESC>"+p`]a
 " Yank entire file

@@ -8,7 +8,7 @@ dotfiles
 | ,p | Fuzzy file find |
 | ,a | Ack |
 | ,s | Syntax check |
-| ,i | Toggle tabs / spaces |
+| ,\ | Toggle tabs / spaces |
 | ,p | Paste (preserve indentation) |
 | ,y | Yank entire file |
 | ,c[space] | Toggle comment block |
