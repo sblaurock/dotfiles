@@ -15,6 +15,9 @@ Plugin 'airblade/vim-gitgutter'
 Plugin 'tpope/vim-fugitive'
 Plugin 'pangloss/vim-javascript'
 Plugin 'Shougo/neocomplcache.vim'
+Plugin 'scrooloose/nerdcommenter'
+Plugin 'lilydjwg/colorizer'
+Plugin 'motemen/git-vi'
 
 call vundle#end()
 
@@ -56,6 +59,7 @@ set nofoldenable " Disable code folding
 set shortmess=at " Shorter messages
 set whichwrap=<,>,h,l " Allow cursor to wrap across lines
 set history=1000 " Increase command history
+set pastetoggle=<leader>v
 
 " Save information across sessions
 set viminfo=%,'50
@@ -69,11 +73,20 @@ set expandtab
 
 colorscheme jellybeans
 
-" Key remappings
-nnoremap <leader>h :nohl<CR><C-L>
+" Clear highlighted matches
+nnoremap <leader>h :nohl<CR>
+" Fuzzy find
 nnoremap <leader>p :CtrlP<CR>
+" Ack
 nnoremap <leader>a :Ack 
-nnoremap <leader>c :SyntasticCheck<CR>
+" Check syntax
+nnoremap <leader>s :SyntasticCheck<CR>
+" Toggle indentation (tabs / spaces)
+nnoremap <leader>t :call <SID>TabToggle()<CR>
+" Paste (preserve indendation)
+inoremap <leader>v <ESC>"+p`]a
+" Yank entire file
+nnoremap <leader>y gg"+yG
 
 " Disable automatic comment insertion
 autocmd FileType * setlocal formatoptions-=c formatoptions-=r formatoptions-=o
@@ -87,9 +100,9 @@ autocmd FileType html,markdown setlocal omnifunc=htmlcomplete#CompleteTags
 autocmd FileType javascript setlocal omnifunc=javascriptcomplete#CompleteJS
 
 " Syntax mapping
-au BufNewFile,BufRead *.swig setlocal ft=htmldjango
-au BufNewFile,BufRead *.json setlocal ft=javascript
-au BufNewFile,BufRead *.mh setlocal ft=mason
+autocmd BufNewFile,BufRead *.swig setlocal ft=htmldjango
+autocmd BufNewFile,BufRead *.json setlocal ft=javascript
+autocmd BufNewFile,BufRead *.mh setlocal ft=mason
 
 " vim-airline
 let g:airline#extensions#tabline#enabled = 1
@@ -142,3 +155,14 @@ augroup resCur
   autocmd!
   autocmd BufWinEnter * call ResCur()
 augroup END
+
+" Toggle tabs / spaces
+function! s:TabToggle()
+  if &expandtab
+    set noexpandtab
+    echo "Indentation set to tabs."
+  else
+    set expandtab
+    echo "Indentation set to spaces."
+  endif
+endfunction
