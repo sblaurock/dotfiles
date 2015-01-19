@@ -89,7 +89,9 @@ inoremap <leader>v <ESC>"+p`]a
 " Yank entire file
 nnoremap <leader>y gg"+yG
 " Toggle file tree
-nmap <leader>d :NERDTreeTabsToggle<CR>
+nmap <leader>f :NERDTreeTabsToggle<CR>
+" Compare staged changes against master
+nnoremap <leader>d :Gdiff<CR>
 " Next tab
 nnoremap <leader><Tab> :tabnext<CR>
 " New tab

@@ -2,7 +2,7 @@ dotfiles
 ========
 | Vim Command | Action |
 | --- | --- |
-| ,d | Toggle file tree |
+| ,f | Toggle file tree |
 | ,v | Toggle paste mode |
 | ,h  | Clear highlighted matches |
 | ,p | Fuzzy file find |
@@ -13,10 +13,11 @@ dotfiles
 | ,y | Yank entire file |
 | ,c[space] | Toggle comment block |
 | ,t | New tab |
-| ,[tab] Next tab |
-| ,q Close tab |
-| ,[1-9] Navigate to tab __num__ |
-[ ,0 Navigate to last tab |
+| ,[tab] | Next tab |
+| ,q | Close tab |
+| ,[1-9] | Navigate to tab _num_ |
+| ,0 | Navigate to last tab |
+| ,d | Compare staged changes against master |
 | ,gd | `git diff` |
 | ,gs | `git status` |
 | ,gl | `git log` |
