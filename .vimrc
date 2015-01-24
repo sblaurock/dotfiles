@@ -48,7 +48,7 @@ set noerrorbells " No bells
 set novisualbell " ...no bells
 set t_vb= " ...seriously, no bells
 set notimeout ttimeout ttimeoutlen=200 " Quickly time out on keycodes
-set list listchars=tab:»·,trail:·,nbsp:· " Display extra whitespace
+set list listchars=tab:»·,trail:·,nbsp:· " Display whitespace
 set clipboard=unnamedplus,unnamed,autoselect " Share clipboard with OS
 set scrolloff=3 " Always show 3 lines above and below cursor
 set noshowmode " Don't show mode indicator
@@ -79,7 +79,7 @@ vnoremap < <gv
 vnoremap > >gv
 
 " Clear highlighted matches
-nnoremap <CR> :noh<CR><CR>
+nnoremap <CR> :nohl<CR><CR>
 " Fuzzy find
 nnoremap <leader>p :CtrlP<CR>
 " Ack
@@ -106,6 +106,8 @@ nnoremap <leader>t :tabnew<C>
 nnoremap <leader>q :tabclose<CR>
 " Move focus between windows
 nnoremap <leader>` <C-W><C-W>
+" Remove trailing whitespace
+nnoremap <leader>w :let _s=@/<Bar>:%s/\s\+$//e<Bar>:let @/=_s<Bar>:nohl<CR>
 " Disable 'Ex' mode.
 nnoremap Q <nop>
 " Tabs by numbers
@@ -194,6 +196,20 @@ function! s:TabToggle()
     echo "Indentation set to spaces."
   endif
 endfunction
+
+" Highlight trailing whitespace as error in visual mode
+function! HighlightWhitespaceOn()
+  match ErrorMsg '\s\+$'
+endfunction
+function! HighlightWhitespaceOff()
+  match none
+endfunction
+augroup highlight_whitespace
+  autocmd!
+  autocmd insertEnter * call HighlightWhitespaceOff()
+  autocmd insertLeave * call HighlightWhitespaceOn()
+augroup END
+call HighlightWhitespaceOn()
 
 " nerdtree
 let NERDTreeShowHidden=1
