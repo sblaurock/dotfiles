@@ -61,7 +61,7 @@ set shortmess=at " Shorter messages
 set whichwrap=<,>,h,l " Allow cursor to wrap across lines
 set history=1000 " Increase command history
 set pastetoggle=<leader>v " Set paste mode toggle key binding
-
+set autoread " Reload files modified outside of Vim
 colorscheme jellybeans
 
 " Save information across sessions
@@ -106,6 +106,8 @@ nnoremap <leader>t :tabnew<C>
 nnoremap <leader>q :tabclose<CR>
 " Move focus between windows
 nnoremap <leader>` <C-W><C-W>
+" Disable 'Ex' mode.
+nnoremap Q <nop>
 " Tabs by numbers
 noremap <leader>1 1gt
 noremap <leader>2 2gt
@@ -133,6 +135,18 @@ autocmd FileType javascript setlocal omnifunc=javascriptcomplete#CompleteJS
 autocmd BufNewFile,BufRead *.swig setlocal ft=htmldjango
 autocmd BufNewFile,BufRead *.json setlocal ft=javascript
 autocmd BufNewFile,BufRead *.mh setlocal ft=mason
+
+" Save when losing focus or switching buffers
+autocmd FocusLost,BufLeave * silent! wa
+
+" Reload files modified outside of Vim (paired with 'autoread')
+autocmd CursorHold,InsertEnter,FocusGained,BufEnter * checktime
+
+" Immediately apply configuration changes
+augroup reload_vimrc " {
+  autocmd!
+  autocmd BufWritePost $MYVIMRC source $MYVIMRC
+augroup END " }
 
 " nerdtree
 let NERDTreeShowHidden=1
