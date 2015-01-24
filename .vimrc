@@ -79,7 +79,7 @@ vnoremap < <gv
 vnoremap > >gv
 
 " Clear highlighted matches
-nnoremap <leader>h :nohl<CR>
+nnoremap <CR> :noh<CR><CR>
 " Fuzzy find
 nnoremap <leader>p :CtrlP<CR>
 " Ack
@@ -121,32 +121,79 @@ noremap <leader>9 9gt
 noremap <leader>0 :tablast<cr>
 
 " Disable automatic comment insertion
-autocmd FileType * setlocal formatoptions-=c formatoptions-=r formatoptions-=o
+augroup disable_comment_insertion
+  autocmd!
+  autocmd FileType * setlocal formatoptions-=c formatoptions-=r formatoptions-=o
+augroup END
 
 " Automatically 'cd' into directory of currently open file
-autocmd BufEnter * silent! lcd %:p:h
+augroup auto_cd
+  autocmd!
+  autocmd BufEnter * silent! lcd %:p:h
+augroup END
 
 " Omni completion
-autocmd FileType css setlocal omnifunc=csscomplete#CompleteCSS
-autocmd FileType html,markdown setlocal omnifunc=htmlcomplete#CompleteTags
-autocmd FileType javascript setlocal omnifunc=javascriptcomplete#CompleteJS
+augroup omni_completion
+  autocmd!
+  autocmd FileType css setlocal omnifunc=csscomplete#CompleteCSS
+  autocmd FileType html,markdown setlocal omnifunc=htmlcomplete#CompleteTags
+  autocmd FileType javascript setlocal omnifunc=javascriptcomplete#CompleteJS
+augroup END
 
 " Syntax mapping
-autocmd BufNewFile,BufRead *.swig setlocal ft=htmldjango
-autocmd BufNewFile,BufRead *.json setlocal ft=javascript
-autocmd BufNewFile,BufRead *.mh setlocal ft=mason
+augroup syntax_mapping
+  autocmd!
+  autocmd BufNewFile,BufRead *.swig setlocal ft=htmldjango
+  autocmd BufNewFile,BufRead *.json setlocal ft=javascript
+  autocmd BufNewFile,BufRead *.mh setlocal ft=mason
+augroup END
 
 " Save when losing focus or switching buffers
-autocmd FocusLost,BufLeave * silent! wa
+augroup auto_save
+  autocmd!
+  autocmd FocusLost,BufLeave * silent! wa
+augroup END
 
 " Reload files modified outside of Vim (paired with 'autoread')
-autocmd CursorHold,InsertEnter,FocusGained,BufEnter * checktime
+augroup auto_reload
+  autocmd!
+  autocmd CursorHold,InsertEnter,FocusGained,BufEnter * checktime
+augroup END
+
+" Enable spellchecking for git commit messages
+augroup spellcheck
+  autocmd!
+  autocmd FileType gitcommit setlocal spell
+augroup END
 
 " Immediately apply configuration changes
-augroup reload_vimrc " {
+augroup reload_vimrc
   autocmd!
   autocmd BufWritePost $MYVIMRC source $MYVIMRC
-augroup END " }
+augroup END
+
+" Restore cursor position on reopen
+function! RestoreCursor()
+  if line("'\"") <= line("$")
+    normal! g`"
+    return 1
+  endif
+endfunction
+augroup restore_cursor
+  autocmd!
+  autocmd BufWinEnter * call RestoreCursor()
+augroup END
+
+" Toggle tabs / spaces
+function! s:TabToggle()
+  if &expandtab
+    set noexpandtab
+    echo "Indentation set to tabs."
+  else
+    set expandtab
+    echo "Indentation set to spaces."
+  endif
+endfunction
 
 " nerdtree
 let NERDTreeShowHidden=1
@@ -190,26 +237,3 @@ let g:neocomplcache_dictionary_filetype_lists = {
   \ 'default'    : '',
   \ 'javascript' : $HOME . '/.vim/dict/javascript.dict,' . $HOME . '/.vim/dict/jQuery.dict'
   \ }
-
-" Restore cursor position on reopen
-function! ResCur()
-  if line("'\"") <= line("$")
-    normal! g`"
-    return 1
-  endif
-endfunction
-augroup resCur
-  autocmd!
-  autocmd BufWinEnter * call ResCur()
-augroup END
-
-" Toggle tabs / spaces
-function! s:TabToggle()
-  if &expandtab
-    set noexpandtab
-    echo "Indentation set to tabs."
-  else
-    set expandtab
-    echo "Indentation set to spaces."
-  endif
-endfunction

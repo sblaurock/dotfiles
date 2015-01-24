@@ -4,7 +4,6 @@ dotfiles
 | --- | --- |
 | ,f | Toggle file tree |
 | ,v | Toggle paste mode |
-| ,h  | Clear highlighted matches |
 | ,p | Fuzzy file find |
 | ,a | Ack |
 | ,s | Syntax check |
