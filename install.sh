@@ -47,11 +47,6 @@ for i in * ; do
   fi
 done
 
-# Create directory for Vim undo stack
-if [ ! -d "${HOME}/.vim/undo" ] ; then
-  mkdir "${HOME}/.vim/undo"
-fi
-
 # Resolve dependency: Vundle
 if [ ! -f "${HOME}/.vim/bundle/Vundle.vim" ] ; then
   git clone $REPO_VUNDLE ~/.vim/bundle/Vundle.vim

@@ -8,7 +8,7 @@ dotfiles
 | ,a | Ack |
 | ,s | Syntax check |
 | ,\ | Toggle tabs / spaces |
-| ,| | Toggle indentation size |
+| ,\| | Toggle indentation size |
 | ,p | Paste (preserve indentation) |
 | ,y | Yank entire file |
 | ,c[space] | Toggle comment block |

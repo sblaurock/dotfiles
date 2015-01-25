@@ -19,7 +19,7 @@ Plugin 'Shougo/neocomplcache.vim'
 Plugin 'scrooloose/nerdcommenter'
 Plugin 'lilydjwg/colorizer'
 Plugin 'motemen/git-vi'
-"Plugin 'tpope/vim-sleuth'
+Plugin 'tpope/vim-sleuth'
 
 call vundle#end()
 
@@ -69,6 +69,26 @@ colorscheme jellybeans
 set viminfo=%,'50
 set viminfo+=\"100,:100
 set viminfo+=n~/.viminfo
+
+" Set preferred backup, swap and undo locations
+set backupdir-=.
+set backupdir+=.
+set backupdir-=~/
+set backupdir^=~/.vim/backup/
+set backupdir^=./.vim-backup/
+set backup
+set directory=./.vim-swap//
+set directory+=~/.vim/swap//
+set directory+=~/tmp//
+set directory+=.
+if exists("+undofile")
+  if isdirectory($HOME . '/.vim/undo') == 0
+    :silent !mkdir -p ~/.vim/undo > /dev/null 2>&1
+  endif
+  set undodir=./.vim-undo//
+  set undodir+=~/.vim/undo//
+  set undofile
+endif
 
 " Indentation settings (2 spaces)
 let g:indentationSize=2
