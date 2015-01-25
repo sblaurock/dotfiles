@@ -15,7 +15,7 @@ Plugin 'bling/vim-airline'
 Plugin 'airblade/vim-gitgutter'
 Plugin 'tpope/vim-fugitive'
 Plugin 'pangloss/vim-javascript'
-Plugin 'Shougo/neocomplcache.vim'
+Plugin 'Valloric/YouCompleteMe'
 Plugin 'scrooloose/nerdcommenter'
 Plugin 'lilydjwg/colorizer'
 Plugin 'motemen/git-vi'
@@ -24,6 +24,9 @@ Plugin 'othree/html5.vim'
 Plugin 'hail2u/vim-css3-syntax'
 Plugin 'jelera/vim-javascript-syntax'
 Plugin 'elzr/vim-json'
+Plugin 'othree/javascript-libraries-syntax.vim'
+Plugin 'moll/vim-node'
+Plugin 'myhere/vim-nodejs-complete'
 
 call vundle#end()
 
@@ -104,10 +107,10 @@ vnoremap < <gv
 vnoremap > >gv
 
 " Typo correction
-:command WQ wq
-:command Wq wq
-:command W w
-:command Q q
+:command! WQ wq
+:command! Wq wq
+:command! W w
+:command! Q q
 
 " Clear highlighted matches
 nnoremap <CR> :nohl<CR><CR>
@@ -289,24 +292,21 @@ let g:syntastic_auto_loc_list=1
 let g:indentLine_color_term = 239
 let g:indentLine_char = '¦'
 
-" neocomplcache
-let g:neocomplcache_enable_at_startup = 1
-let g:neocomplete#sources#syntax#min_keyword_length = 3
-let g:neocomplcache_enable_ignore_case = 1
-let g:neocomplcache_enable_smart_case = 1
-let g:neocomplcache_enable_camel_case_completion = 1
-let g:neocomplcache_enable_underbar_completion = 1
-let g:neocomplcache_enable_fuzzy_completion = 1
-let g:neocomplcache_enable_insert_char_pre = 1
-let g:neocomplcache_enable_auto_select = 1
-let g:neocomplcache_max_list = 50
-inoremap <expr><TAB>  pumvisible() ? "\<Down>" : "\<TAB>"
+" YouCompleteMe
+let g:ycm_complete_in_strings = 0
+let g:ycm_seed_identifiers_with_syntax = 1
+let g:ycm_filetype_blacklist = {
+      \ 'gitcommit' : 1,
+      \}
 
 " html5.vim
 let g:html5_event_handler_attributes_complete = 0
 let g:html5_rdfa_attributes_complete = 0
 let g:html5_microdata_attributes_complete = 0
 let g:html5_aria_attributes_complete = 0
+
+" javascript-libraries-syntax
+let g:used_javascript_libs = 'jquery,underscore,requirejs,jasmine'
 
 " vim-json
 augroup json_autocmd
