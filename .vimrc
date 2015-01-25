@@ -20,6 +20,10 @@ Plugin 'scrooloose/nerdcommenter'
 Plugin 'lilydjwg/colorizer'
 Plugin 'motemen/git-vi'
 Plugin 'tpope/vim-sleuth'
+Plugin 'othree/html5.vim'
+Plugin 'hail2u/vim-css3-syntax'
+Plugin 'jelera/vim-javascript-syntax'
+Plugin 'elzr/vim-json'
 
 call vundle#end()
 
@@ -99,6 +103,12 @@ execute "set softtabstop=".g:indentationSize
 vnoremap < <gv
 vnoremap > >gv
 
+" Typo correction
+:command WQ wq
+:command Wq wq
+:command W w
+:command Q q
+
 " Clear highlighted matches
 nnoremap <CR> :nohl<CR><CR>
 " Fuzzy find
@@ -171,6 +181,7 @@ augroup syntax_mapping
   autocmd BufNewFile,BufRead *.swig setlocal ft=htmldjango
   autocmd BufNewFile,BufRead *.json setlocal ft=javascript
   autocmd BufNewFile,BufRead *.mh setlocal ft=mason
+  autocmd BufNewFile,BufRead *.json set filetype=json
 augroup END
 
 " Save when losing focus or switching buffers
@@ -290,7 +301,20 @@ let g:neocomplcache_enable_insert_char_pre = 1
 let g:neocomplcache_enable_auto_select = 1
 let g:neocomplcache_max_list = 50
 inoremap <expr><TAB>  pumvisible() ? "\<Down>" : "\<TAB>"
-let g:neocomplcache_dictionary_filetype_lists = {
-  \ 'default'    : '',
-  \ 'javascript' : $HOME . '/.vim/dict/javascript.dict,' . $HOME . '/.vim/dict/jQuery.dict'
-  \ }
+
+" html5.vim
+let g:html5_event_handler_attributes_complete = 0
+let g:html5_rdfa_attributes_complete = 0
+let g:html5_microdata_attributes_complete = 0
+let g:html5_aria_attributes_complete = 0
+
+" vim-json
+augroup json_autocmd
+  autocmd!
+  autocmd FileType json set autoindent
+  autocmd FileType json set formatoptions=tcq2l
+  autocmd FileType json set textwidth=78 shiftwidth=2
+  autocmd FileType json set softtabstop=2 tabstop=8
+  autocmd FileType json set expandtab
+  autocmd FileType json set foldmethod=syntax
+augroup END
