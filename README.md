@@ -21,6 +21,7 @@ dotfiles
 | ,` | Move focus between windows |
 | ,w | Strip trailing whitespace |
 | ,d | Compare staged changes against master |
+| ,g | Show modified files in finder |
 | ,gd | `git diff` |
 | ,gs | `git status` |
 | ,gl | `git log` |

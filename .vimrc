@@ -27,6 +27,7 @@ Plugin 'elzr/vim-json'
 Plugin 'othree/javascript-libraries-syntax.vim'
 Plugin 'moll/vim-node'
 Plugin 'myhere/vim-nodejs-complete'
+Plugin 'jasoncodes/ctrlp-modified.vim'
 
 call vundle#end()
 
@@ -70,6 +71,7 @@ set whichwrap=<,>,h,l " Allow cursor to wrap across lines
 set history=1000 " Increase command history
 set pastetoggle=<leader>v " Set paste mode toggle key binding
 set autoread " Reload files modified outside of Vim
+set wildignore+=*/.git/*,*/.hg/*,*/.svn/*,*/tmp/*,*.so,*.swp,*.zip,*.mp3,*/node_modules/*,*.DS_Store
 colorscheme jellybeans
 
 " Save information across sessions
@@ -132,12 +134,14 @@ nnoremap <leader>y gg"+yG
 nmap <leader>f :NERDTreeTabsToggle<CR>
 " Compare staged changes against master
 nnoremap <leader>d :Gdiff<CR>
+" Show modified files in fuzzy finder
+nnoremap <leader>g :CtrlPModified<CR>
 " Next tab
 nnoremap <leader><Tab> :tabnext<CR>
 " Previous tab
 nnoremap <leader><S-Tab> :tabprevious<CR>
 " New tab
-nnoremap <leader>t :tabnew<C>
+nnoremap <leader>t :tabnew<CR>
 " Close tab
 nnoremap <leader>q :tabclose<CR>
 " Move focus between windows
@@ -267,7 +271,10 @@ augroup END
 call HighlightWhitespaceOn()
 
 " nerdtree
-let NERDTreeShowHidden=1
+let g:NERDTreeShowHidden=1
+let g:NERDTreeRespectWildIgnore=1
+let g:NERDTreeMinimalUI=1
+highlight Directory guifg=#FF0000 ctermfg=DarkBlue
 
 " vim-airline
 let g:airline#extensions#tabline#enabled = 1
@@ -278,15 +285,22 @@ let g:gitgutter_sign_column_always = 1
 let g:gitgutter_realtime = 1
 
 " ctrlp.vim
-set wildignore+=*/.git/*,*/.hg/*,*/.svn/*,*/tmp/*,*.so,*.swp,*.zip,*.mp3
 let g:ctrlp_regexp = 1
 let g:ctrlp_max_height = 20
-let g:ctrlp_working_path_mode = 'ra'
+let g:ctrlp_working_path_mode = 'r'
+let g:ctrlp_custom_ignore = {
+  \ 'dir':  '\v[\/]\.(git|hg|svn|tmp|node_modules)$',
+  \ 'file': '\v\.(so|swp|zip|mp3|DS_Store)$'
+  \ }
 
 " Syntastic
 let g:syntastic_enable_signs=1
 let g:syntastic_auto_jump=0
 let g:syntastic_auto_loc_list=1
+let g:syntastic_python_checkers = ['csslint']
+let g:syntastic_javascript_checkers = ['jshint']
+let g:syntastic_html_checkers = ['jshint']
+let g:syntastic_vim_checkers = ['vimlint']
 
 " indentLine
 let g:indentLine_color_term = 239
@@ -295,9 +309,7 @@ let g:indentLine_char = '¦'
 " YouCompleteMe
 let g:ycm_complete_in_strings = 0
 let g:ycm_seed_identifiers_with_syntax = 1
-let g:ycm_filetype_blacklist = {
-      \ 'gitcommit' : 1,
-      \}
+let g:ycm_filetype_blacklist = { 'gitcommit' : 1 }
 
 " html5.vim
 let g:html5_event_handler_attributes_complete = 0
