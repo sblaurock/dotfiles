@@ -19,6 +19,7 @@ Plugin 'Shougo/neocomplcache.vim'
 Plugin 'scrooloose/nerdcommenter'
 Plugin 'lilydjwg/colorizer'
 Plugin 'motemen/git-vi'
+"Plugin 'tpope/vim-sleuth'
 
 call vundle#end()
 
@@ -69,10 +70,10 @@ set viminfo=%,'50
 set viminfo+=\"100,:100
 set viminfo+=n~/.viminfo
 
-" Tab settings (2 spaces)
-set shiftwidth=2
-set softtabstop=2
-set expandtab
+" Indentation settings (2 spaces)
+let g:indentationSize=2
+execute "set shiftwidth=".g:indentationSize
+execute "set softtabstop=".g:indentationSize
 
 " Preserve visual selection when indenting
 vnoremap < <gv
@@ -88,6 +89,8 @@ nnoremap <leader>a :Ack
 nnoremap <leader>s :SyntasticCheck<CR>
 " Toggle indentation (tabs / spaces)
 nnoremap <leader>\ :call <SID>TabToggle()<CR>
+" Toggle indentation size (2 / 4)
+nnoremap <leader>\| :call <SID>SizeToggle()<CR>
 " Paste (preserve indendation)
 inoremap <leader>v <ESC>"+p`]a
 " Yank entire file
@@ -190,10 +193,28 @@ augroup END
 function! s:TabToggle()
   if &expandtab
     set noexpandtab
-    echo "Indentation set to tabs."
+    echo "Indentation set to tabs (" . g:indentationSize . ")."
   else
     set expandtab
-    echo "Indentation set to spaces."
+    echo "Indentation set to spaces (" . g:indentationSize . ")."
+  endif
+endfunction
+
+" Toggle indentation size
+function! s:SizeToggle()
+  let g:indentationMode=&expandtab ? 'spaces' : 'tabs'
+  if g:indentationSize == 2
+    set softtabstop=4
+    set tabstop=4
+    set shiftwidth=4
+    let g:indentationSize=4
+    echo "Indentation size set to 4 (" . g:indentationMode . ")."
+  else
+    set softtabstop=2
+    set tabstop=2
+    set shiftwidth=2
+    let g:indentationSize=2
+    echo "Indentation size set to 2 (" . g:indentationMode . ")."
   endif
 endfunction
 
