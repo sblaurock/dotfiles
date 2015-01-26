@@ -18,7 +18,6 @@ Plugin 'pangloss/vim-javascript'
 Plugin 'Valloric/YouCompleteMe'
 Plugin 'scrooloose/nerdcommenter'
 Plugin 'lilydjwg/colorizer'
-Plugin 'motemen/git-vi'
 Plugin 'tpope/vim-sleuth'
 Plugin 'othree/html5.vim'
 Plugin 'hail2u/vim-css3-syntax'
@@ -69,9 +68,9 @@ set nofoldenable " Disable code folding
 set shortmess=at " Shorter messages
 set whichwrap=<,>,h,l " Allow cursor to wrap across lines
 set history=1000 " Increase command history
-set pastetoggle=<leader>v " Set paste mode toggle key binding
+set pastetoggle=<leader>V " Set paste mode toggle key binding
 set autoread " Reload files modified outside of Vim
-set wildignore+=*/.git/*,*/.hg/*,*/.svn/*,*/tmp/*,*.so,*.swp,*.zip,*.mp3,*/node_modules/*,*.DS_Store
+set wildignore+=*/.hg/*,*/.svn/*,*/tmp/*,*.so,*.swp,*.zip,*.mp3,*/node_modules/*,*.DS_Store
 colorscheme jellybeans
 
 " Save information across sessions
@@ -115,9 +114,16 @@ vnoremap > >gv
 :command! Q q
 
 " Clear highlighted matches
-nnoremap <CR> :nohl<CR><CR>
+nnoremap <CR> :noh<CR><CR>
+" Disable 'Ex' mode.
+nnoremap Q <nop>
+
+" Toggle file tree
+nmap <leader>f :NERDTreeTabsToggle<CR>
 " Fuzzy find
 nnoremap <leader>p :CtrlP<CR>
+" Fuzzy find (modified files)
+nnoremap <leader>P :CtrlPModified<CR>
 " Ack
 nnoremap <leader>a :Ack 
 " Check syntax
@@ -130,26 +136,14 @@ nnoremap <leader>\| :call <SID>SizeToggle()<CR>
 inoremap <leader>v <ESC>"+p`]a
 " Yank entire file
 nnoremap <leader>y gg"+yG
-" Toggle file tree
-nmap <leader>f :NERDTreeTabsToggle<CR>
-" Compare staged changes against master
-nnoremap <leader>d :Gdiff<CR>
-" Show modified files in fuzzy finder
-nnoremap <leader>g :CtrlPModified<CR>
+" New tab
+nnoremap <leader>t :tabnew<CR>
 " Next tab
 nnoremap <leader><Tab> :tabnext<CR>
 " Previous tab
 nnoremap <leader><S-Tab> :tabprevious<CR>
-" New tab
-nnoremap <leader>t :tabnew<CR>
 " Close tab
 nnoremap <leader>q :tabclose<CR>
-" Move focus between windows
-nnoremap <leader>` <C-W><C-W>
-" Remove trailing whitespace
-nnoremap <leader>w :let _s=@/<Bar>:%s/\s\+$//e<Bar>:let @/=_s<Bar>:nohl<CR>
-" Disable 'Ex' mode.
-nnoremap Q <nop>
 " Tabs by numbers
 noremap <leader>1 1gt
 noremap <leader>2 2gt
@@ -160,7 +154,28 @@ noremap <leader>6 6gt
 noremap <leader>7 7gt
 noremap <leader>8 8gt
 noremap <leader>9 9gt
+" Last tab
 noremap <leader>0 :tablast<cr>
+" Move focus between windows
+nnoremap <leader>` <C-W><C-W>
+" Remove trailing whitespace
+nnoremap <leader>w :let _s=@/<Bar>:%s/\s\+$//e<Bar>:let @/=_s<Bar>:nohl<CR>
+" Compare staged changes against master
+nnoremap <leader>gd :Gdiff<CR>
+" View file on Github
+nnoremap <leader>gh :Gbrowse<CR>
+" Copy Github file URL to clipboard
+nnoremap <leader>gH :Gbrowse!<CR>
+" `git status`
+nnoremap <leader>gs :Gstatus<CR>
+" `git blame`
+nnoremap <leader>gb :Gblame<CR>
+" `git commit`
+nnoremap <leader>gc :Gcommit<CR>
+" `git pull`
+nnoremap <leader>gp :Gpull<CR>
+" `git push`
+nnoremap <leader>gu :Gpush<CR>
 
 " Disable automatic comment insertion
 augroup disable_comment_insertion
