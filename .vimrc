@@ -27,6 +27,8 @@ Plugin 'othree/javascript-libraries-syntax.vim'
 Plugin 'moll/vim-node'
 Plugin 'myhere/vim-nodejs-complete'
 Plugin 'jasoncodes/ctrlp-modified.vim'
+Plugin 'gcmt/wildfire.vim'
+Plugin 'rking/ag.vim'
 
 call vundle#end()
 
@@ -114,9 +116,13 @@ vnoremap > >gv
 :command! Q q
 
 " Clear highlighted matches
-nnoremap <CR> :noh<CR><CR>
+nnoremap // :noh<CR>
 " Disable 'Ex' mode.
 nnoremap Q <nop>
+" Enter insert mode
+nmap <Space> i
+" Exit insert mode
+imap ii <Esc>`^
 
 " Toggle file tree
 nmap <leader>f :NERDTreeTabsToggle<CR>
@@ -144,6 +150,8 @@ nnoremap <leader><Tab> :tabnext<CR>
 nnoremap <leader><S-Tab> :tabprevious<CR>
 " Close tab
 nnoremap <leader>q :tabclose<CR>
+" Save session and exit
+nnoremap <leader>Q :call SaveAndExit()<CR>
 " Tabs by numbers
 noremap <leader>1 1gt
 noremap <leader>2 2gt
@@ -242,6 +250,13 @@ augroup restore_cursor
   autocmd BufWinEnter * call RestoreCursor()
 augroup END
 
+" Save and exit
+function! SaveAndExit()
+  :NERDTreeTabsClose
+  :mksession!
+  :wqa
+endfunction
+
 " Toggle tabs / spaces
 function! s:TabToggle()
   if &expandtab
@@ -305,8 +320,15 @@ let g:ctrlp_max_height = 20
 let g:ctrlp_working_path_mode = 'r'
 let g:ctrlp_custom_ignore = {
   \ 'dir':  '\v[\/]\.(git|hg|svn|tmp|node_modules)$',
-  \ 'file': '\v\.(so|swp|zip|mp3|DS_Store)$'
+  \ 'file': '\v\.(so|swp|zip|mp3|DS_Store|mov|woff|svg|jpg|jpeg|png|ttf|eot)$'
   \ }
+let g:ctrlp_prompt_mappings = {
+  \ 'AcceptSelection("e")': [],
+  \ 'AcceptSelection("t")': ['<c-t>', '<cr>', '<2-LeftMouse>'],
+  \ }
+if executable('ag')
+  let g:ctrlp_user_command = 'ag %s -l --nocolor -g ""'
+endif
 
 " Syntastic
 let g:syntastic_enable_signs=1
@@ -345,3 +367,8 @@ augroup json_autocmd
   autocmd FileType json set expandtab
   autocmd FileType json set foldmethod=syntax
 augroup END
+
+" ag.vim
+if executable('ag')
+  nnoremap <leader>a :Ag 
+endif

@@ -5,7 +5,7 @@ dotfiles
 | ,f | Toggle file tree |
 | ,p | Fuzzy file find |
 | ,P | Fuzzy file find (modified files) |
-| ,a | Ack |
+| ,a | Ag (Ack) |
 | ,s | Syntax check |
 | ,\ | Toggle tabs / spaces |
 | ,\| | Toggle indentation size |
@@ -17,6 +17,7 @@ dotfiles
 | ,[tab] | Next tab |
 | ,[shift][tab] | Previous tab |
 | ,q | Close tab |
+| ,Q | Save session and exit |
 | ,[1-9] | Navigate to tab _num_ |
 | ,0 | Navigate to last tab |
 | ,` | Move focus between windows |
