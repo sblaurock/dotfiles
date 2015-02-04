@@ -29,6 +29,7 @@ Plugin 'myhere/vim-nodejs-complete'
 Plugin 'jasoncodes/ctrlp-modified.vim'
 Plugin 'gcmt/wildfire.vim'
 Plugin 'rking/ag.vim'
+Plugin 'tpope/vim-surround'
 
 call vundle#end()
 
@@ -80,23 +81,21 @@ set viminfo=%,'50
 set viminfo+=\"100,:100
 set viminfo+=n~/.viminfo
 
-" Set preferred backup, swap and undo locations
-set backupdir-=.
-set backupdir+=.
-set backupdir-=~/
-set backupdir^=~/.vim/backup/
-set backupdir^=./.vim-backup/
+" Set preferred backup, swap and undo locations (create if necessary)
+if isdirectory($HOME . '/.vim/backup') == 0
+  :silent !mkdir -p ~/.vim/backup > /dev/null 2>&1
+endif
+set backupdir=~/.vim/backup//,/tmp//
 set backup
-set directory=./.vim-swap//
-set directory+=~/.vim/swap//
-set directory+=~/tmp//
-set directory+=.
+if isdirectory($HOME . '/.vim/swp') == 0
+  :silent !mkdir -p ~/.vim/swp > /dev/null 2>&1
+endif
+set directory=~/.vim/swp//,/tmp//
 if exists("+undofile")
   if isdirectory($HOME . '/.vim/undo') == 0
     :silent !mkdir -p ~/.vim/undo > /dev/null 2>&1
   endif
-  set undodir=./.vim-undo//
-  set undodir+=~/.vim/undo//
+  set undodir=~/.vim/undo//,/tmp//
   set undofile
 endif
 
@@ -122,7 +121,7 @@ nnoremap Q <nop>
 " Enter insert mode
 nmap <Space> i
 " Exit insert mode
-imap ii <Esc>`^
+imap ;; <Esc>`^
 
 " Toggle file tree
 nmap <leader>f :NERDTreeTabsToggle<CR>
@@ -253,7 +252,7 @@ augroup END
 " Save and exit
 function! SaveAndExit()
   :NERDTreeTabsClose
-  :mksession!
+  :mksession! ~/.vim/session.vim
   :wqa
 endfunction
 
