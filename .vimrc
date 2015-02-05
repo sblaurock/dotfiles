@@ -60,7 +60,7 @@ set novisualbell " ...no bells
 set t_vb= " ...seriously, no bells
 set notimeout ttimeout ttimeoutlen=200 " Quickly time out on keycodes
 set list listchars=tab:»·,trail:·,nbsp:· " Display whitespace
-set clipboard=unnamedplus,unnamed,autoselect " Share clipboard with OS
+set clipboard=unnamedplus,unnamed " Share clipboard with OS
 set scrolloff=3 " Always show 3 lines above and below cursor
 set noshowmode " Don't show mode indicator
 set showcmd " Show information about current command
@@ -121,7 +121,9 @@ nnoremap Q <nop>
 " Enter insert mode
 nmap <Space> i
 " Exit insert mode
-imap ;; <Esc>`^
+imap yy <Esc>`^
+" Save keystrokes
+nnoremap ; :
 
 " Toggle file tree
 nmap <leader>f :NERDTreeTabsToggle<CR>
