@@ -75,7 +75,7 @@ set history=1000 " Increase command history
 set pastetoggle=<leader>V " Set paste mode toggle key binding
 set autoread " Reload files modified outside of Vim
 set wildignore+=*/.hg/*,*/.svn/*,*/tmp/*,*.so,*.swp,*.zip,*.mp3,*/node_modules/*,*.DS_Store
-colorscheme jellybeans
+colorscheme spacegray
 
 " Save information across sessions
 set viminfo=%,'50
@@ -320,6 +320,7 @@ let g:NERDTreeMinimalUI=1
 highlight Directory guifg=#FF0000 ctermfg=DarkBlue
 
 " vim-airline
+let g:airline_theme = 'wombat'
 let g:airline#extensions#tabline#enabled = 1
 let g:airline_powerline_fonts = 1
 
