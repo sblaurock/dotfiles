@@ -9,10 +9,12 @@ dotfiles
 | ,s | Syntax check |
 | ,\ | Toggle tabs / spaces |
 | ,\| | Toggle indentation size |
+| ,c | Copy selected text |
+| ,x | Cut selected text |
 | ,v | Paste (preserve indentation) [I] |
 | ,V | Toggle paste mode |
 | ,y | Yank entire file |
-| ,c[space] | Toggle comment block |
+| ,/ | Toggle comment block |
 | ,t | New tab |
 | ,[tab] | Next tab |
 | ,[shift][tab] | Previous tab |

@@ -30,6 +30,7 @@ Plugin 'jasoncodes/ctrlp-modified.vim'
 Plugin 'gcmt/wildfire.vim'
 Plugin 'rking/ag.vim'
 Plugin 'tpope/vim-surround'
+Plugin 'deris/vim-shot-f'
 
 call vundle#end()
 
@@ -124,6 +125,8 @@ nmap <Space> i
 imap yy <Esc>`^
 " Save keystrokes
 nnoremap ; :
+" Force write
+cmap w!! w !sudo tee % >/dev/null<CR>
 
 " Toggle file tree
 nmap <leader>f :NERDTreeTabsToggle<CR>
@@ -139,10 +142,16 @@ nnoremap <leader>s :SyntasticCheck<CR>
 nnoremap <leader>\ :call <SID>TabToggle()<CR>
 " Toggle indentation size (2 / 4)
 nnoremap <leader>\| :call <SID>SizeToggle()<CR>
-" Paste (preserve indendation)
+" Copy selected text
+vnoremap <leader>c "*y
+" Cut selected text
+vnoremap <leader>x "*d
+" Paste (preserve indentation)
 inoremap <leader>v <ESC>"+p`]a
 " Yank entire file
 nnoremap <leader>y gg"+yG
+" Save session and exit
+nnoremap <leader>Q :call SaveAndExit()<CR>
 " New tab
 nnoremap <leader>t :tabnew<CR>
 " Next tab
@@ -151,8 +160,6 @@ nnoremap <leader><Tab> :tabnext<CR>
 nnoremap <leader><S-Tab> :tabprevious<CR>
 " Close tab
 nnoremap <leader>q :tabclose<CR>
-" Save session and exit
-nnoremap <leader>Q :call SaveAndExit()<CR>
 " Tabs by numbers
 noremap <leader>1 1gt
 noremap <leader>2 2gt
@@ -169,6 +176,8 @@ noremap <leader>0 :tablast<cr>
 nnoremap <leader>` <C-W><C-W>
 " Remove trailing whitespace
 nnoremap <leader>w :let _s=@/<Bar>:%s/\s\+$//e<Bar>:let @/=_s<Bar>:nohl<CR>
+" `open`
+nnoremap <leader>o :!open .<CR>
 " Compare staged changes against master
 nnoremap <leader>gd :Gdiff<CR>
 " View file on Github
@@ -185,6 +194,9 @@ nnoremap <leader>gc :Gcommit<CR>
 nnoremap <leader>gp :Gpull<CR>
 " `git push`
 nnoremap <leader>gu :Gpush<CR>
+" Toggle comment block
+nnoremap <leader>/ :call NERDComment(0, "toggle")<CR>
+vnoremap <leader>/ :call NERDComment(0, "toggle")<CR>
 
 " Disable automatic comment insertion
 augroup disable_comment_insertion
