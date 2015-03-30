@@ -137,7 +137,7 @@ nnoremap <leader>P :CtrlPModified<CR>
 " Ack
 nnoremap <leader>a :Ack 
 " Check syntax
-nnoremap <leader>s :SyntasticCheck<CR>
+nnoremap <leader>s :SyntasticToggleMode<CR>
 " Toggle indentation (tabs / spaces)
 nnoremap <leader>\ :call <SID>TabToggle()<CR>
 " Toggle indentation size (2 / 4)
@@ -352,6 +352,11 @@ let g:syntastic_python_checkers = ['csslint']
 let g:syntastic_javascript_checkers = ['jshint']
 let g:syntastic_html_checkers = ['jshint']
 let g:syntastic_vim_checkers = ['vimlint']
+let g:syntastic_mode_map = {
+  \ 'mode': 'passive',
+  \ 'active_filetypes': [],
+  \ 'passive_filetypes': []
+  \ }
 
 " indentLine
 let g:indentLine_color_term = 239
