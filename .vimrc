@@ -31,6 +31,8 @@ Plugin 'gcmt/wildfire.vim'
 Plugin 'rking/ag.vim'
 Plugin 'tpope/vim-surround'
 Plugin 'deris/vim-shot-f'
+Plugin 'raimondi/delimitmate'
+Plugin 'edsono/vim-matchit'
 
 call vundle#end()
 
@@ -126,7 +128,7 @@ imap yy <Esc>`^
 " Save keystrokes
 nnoremap ; :
 " Force write
-cmap w!! w !sudo tee % >/dev/null<CR>
+cmap w!! w !sudo tee % >/dev/null
 
 " Toggle file tree
 nmap <leader>f :NERDTreeTabsToggle<CR>
@@ -314,9 +316,9 @@ augroup END
 call HighlightWhitespaceOn()
 
 " nerdtree
-let g:NERDTreeShowHidden=1
-let g:NERDTreeRespectWildIgnore=1
-let g:NERDTreeMinimalUI=1
+let g:NERDTreeShowHidden = 1
+let g:NERDTreeRespectWildIgnore = 1
+let g:NERDTreeMinimalUI = 1
 highlight Directory guifg=#FF0000 ctermfg=DarkBlue
 
 " vim-airline
@@ -345,9 +347,9 @@ if executable('ag')
 endif
 
 " Syntastic
-let g:syntastic_enable_signs=1
-let g:syntastic_auto_jump=0
-let g:syntastic_auto_loc_list=1
+let g:syntastic_enable_signs = 1
+let g:syntastic_auto_jump = 0
+let g:syntastic_auto_loc_list = 1
 let g:syntastic_python_checkers = ['csslint']
 let g:syntastic_javascript_checkers = ['jshint']
 let g:syntastic_html_checkers = ['jshint']
@@ -391,3 +393,6 @@ augroup END
 if executable('ag')
   nnoremap <leader>a :Ag 
 endif
+
+" delimitMate
+let delimitMate_expand_cr = 1
