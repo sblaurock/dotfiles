@@ -226,7 +226,7 @@ augroup syntax_mapping
   autocmd BufNewFile,BufRead *.swig setlocal ft=htmldjango
   autocmd BufNewFile,BufRead *.json setlocal ft=javascript
   autocmd BufNewFile,BufRead *.mh setlocal ft=mason
-  autocmd BufNewFile,BufRead *.json set filetype=json
+  autocmd BufNewFile,BufRead *.json set ft=json
 augroup END
 
 " Save when losing focus or switching buffers
@@ -379,6 +379,7 @@ let g:html5_aria_attributes_complete = 0
 let g:used_javascript_libs = 'jquery,underscore,requirejs,jasmine'
 
 " vim-json
+let g:vim_json_syntax_conceal = 0
 augroup json_autocmd
   autocmd!
   autocmd FileType json set autoindent

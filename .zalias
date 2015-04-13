@@ -1,0 +1,7 @@
+alias vims='vim -S ~/.vim/session.vim'
+alias gitcm='git branch --merged | grep -v "\*" | xargs -n 1 git branch -d'
+
+# Source custom alias file
+if [[ -s "${ZDOTDIR:-$HOME}/.zalias-custom" ]]; then
+  source "${ZDOTDIR:-$HOME}/.zalias-custom"
+fi

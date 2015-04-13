@@ -32,3 +32,56 @@ dotfiles
 | ,gc | `git commit` |
 | ,gp | `git pull` |
 | ,gu | `git push` |
+
+## Vim Changelog
+
+4.2.2015
+- The '%' operator will now take you to matching HTML tags and more.
+- Auto closing brackets, quotes, parenthesis.
+- Auto indentation on block definitions.
+
+3.29.15
+- Disable Syntastic by default. Update binding to toggle mode.
+
+3.2.15
+- Added 'vim-shot-f' to plugin list.
+- Write as root binding (w!!).
+- Added shortcuts for copy and cut.
+- Updated comment block binding (,/).
+- Open in OS binding (,o).
+- Save session and quit binding (,Q).
+
+2.4.15
+- ‘;;’ exits insert mode instead of ‘ii’.
+- Backup, swap and undo files have been moved out of working directory to their own locations in ‘~/.vim/‘. These directories will automatically be created if they do not yet exist.
+- Saved Vim session file now gets saved to ‘~/.vim/‘ instead of working directory.
+- Added ‘vimsurround’ for quick highlighting.
+
+1.27.15
+- ‘[space]’ enters insert mode.
+- ‘ii’ exits insert mode.
+- ‘,Q’ will save session, save files and exit Vim. Session can be reopened with ‘vim -S’.
+- Pressing [enter] or double clicking on a fuzzy finder entry will open it in a new tab as opposed to edit mode.
+- Prefer Ag (silver searcher) to Ack when available.
+- Prefer Ag (silver searcher) in fuzzy finder when available.
+- Added Ag ignore file.
+- Added ‘wildfire’ plugin for text selection.
+- Mapped ‘//‘ to clear highlighted searches.
+
+1.24.15
+- Save when losing focus or switching buffers
+- Automatically reload files modified outside of Vim
+- Immediately apply changes to Vim configuration
+- [Enter] will clear highlighted matches
+- Enable spellchecking for git commit messages
+- Highlight trailing whitespace as error in visual mode
+- Strip all whitespace key binding (,w)
+- Automatic indentation settings detection
+- Indentation size toggle (,|)
+- Set preferred backup, swap and undo locations (enables persistent undo)
+- HTML5 completion support.
+- Improved CSS3 Syntax.
+- Improved JavaScript syntax.
+- Improved JSON syntax.
+- Write / quit command typo corrections
+- Configuration file housekeeping
