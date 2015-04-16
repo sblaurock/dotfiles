@@ -5,6 +5,7 @@ dotfiles
 | ,f | Toggle file tree |
 | ,p | Fuzzy file find |
 | ,P | Fuzzy file find (modified files) |
+| ,m | Open command shortcuts reference file |
 | ,a | Ag (Ack) |
 | ,s | Syntax check |
 | ,\ | Toggle tabs / spaces |

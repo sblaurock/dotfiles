@@ -136,6 +136,8 @@ nmap <leader>f :NERDTreeTabsToggle<CR>
 nnoremap <leader>p :CtrlP<CR>
 " Fuzzy find (modified files)
 nnoremap <leader>P :CtrlPModified<CR>
+" Open commands file in new tab
+nnoremap <leader>m :tabnew ~/.vim/commands<CR>
 " Ack
 nnoremap <leader>a :Ack 
 " Check syntax
@@ -227,6 +229,7 @@ augroup syntax_mapping
   autocmd BufNewFile,BufRead *.json setlocal ft=javascript
   autocmd BufNewFile,BufRead *.mh setlocal ft=mason
   autocmd BufNewFile,BufRead *.json set ft=json
+  autocmd BufNewFile,BufReadPost *.md set filetype=markdown
 augroup END
 
 " Save when losing focus or switching buffers
