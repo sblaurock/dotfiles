@@ -1,5 +1,23 @@
+# Restore saved Vim session
 alias vims='vim -S ~/.vim/session.vim'
+
+# Clean all Git branches that have been merged to master
 alias gitcm='git branch --merged | grep -v "\*" | xargs -n 1 git branch -d'
+
+# Start a HTTP webserver
+function http() {
+  python -m SimpleHTTPServer $1 || 8000
+}
+
+# Perform a Google search for query
+function google() {
+  open "http://www.google.com/search?q=${(j: :)@}"
+}
+
+# List the largest files in current directory
+function largest() {
+  find ${1:-.} -type f -exec ls -al {} \; | sort -nr -k5 | head -n 20
+}
 
 # Source custom alias file
 if [[ -s "${ZDOTDIR:-$HOME}/.zalias-custom" ]]; then
