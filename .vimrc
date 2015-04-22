@@ -123,8 +123,6 @@ nnoremap // :noh<CR>
 nnoremap Q <nop>
 " Enter insert mode
 nmap <Space> i
-" Exit insert mode
-imap yy <Esc>`^
 " Save keystrokes
 nnoremap ; :
 " Force write

@@ -1,8 +1,14 @@
 # Restore saved Vim session
 alias vims='vim -S ~/.vim/session.vim'
 
-# Clean all Git branches that have been merged to master
+# Clean all Git branches that have been merged to master (clean merged)
 alias gitcm='git branch --merged | grep -v "\*" | xargs -n 1 git branch -d'
+
+# Show Git status of current branch against master (start stat)
+alias gitss='git diff --stat=120,100 origin/master...HEAD "$@"'
+
+# Show Git diff of current branch against master (start diff)
+alias gitsd='git diff origin/master...HEAD "$@"'
 
 # Start a HTTP webserver
 function http() {
