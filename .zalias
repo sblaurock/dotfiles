@@ -10,6 +10,9 @@ alias gitss='git diff --stat=120,100 origin/master...HEAD "$@"'
 # Show Git diff of current branch against master (start diff)
 alias gitsd='git diff origin/master...HEAD "$@"'
 
+# Cut a branch from remote master (branch master)
+alias gitbm='git checkout master; git pull origin master; git checkout -b "$@"'
+
 # Start a HTTP webserver
 function http() {
   python -m SimpleHTTPServer $1 || 8000
