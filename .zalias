@@ -1,8 +1,11 @@
+# Implicit flags
+alias rsync='rsync --progress'
+
 # Restore saved Vim session
 alias vims='vim -S ~/.vim/session.vim'
 
 # Clean all Git branches that have been merged to master (clean merged)
-alias gitcm='git branch --merged | grep -v "\*" | xargs -n 1 git branch -d'
+alias gitcm='git checkout master; git pull origin master; git branch --merged | grep -v "\*" | xargs -n 1 git branch -d'
 
 # Show Git status of current branch against master (start stat)
 alias gitss='git diff --stat=120,100 origin/master...HEAD "$@"'
@@ -12,6 +15,9 @@ alias gitsd='git diff origin/master...HEAD "$@"'
 
 # Cut a branch from remote master (branch master)
 alias gitbm='git checkout master; git pull origin master; git checkout -b "$@"'
+
+# Colorful Git log (color log)
+alias gitcl='git log --color --graph --pretty=format:"%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset" --abbrev-commit'
 
 # Start a HTTP webserver
 function http() {

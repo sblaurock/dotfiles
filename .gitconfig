@@ -24,3 +24,6 @@
         m=merge
 [help]
         autocorrect = 1
+[status]
+        short = true
+        branch = true
