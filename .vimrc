@@ -326,6 +326,10 @@ highlight Directory guifg=#FF0000 ctermfg=DarkBlue
 let g:airline_theme = 'wombat'
 let g:airline#extensions#tabline#enabled = 1
 let g:airline_powerline_fonts = 1
+let g:airline#extensions#tabline#tab_nr_type = 1
+let g:airline#extensions#tabline#tab_min_count = 1
+let g:airline#extensions#tabline#show_buffers = 0
+let g:airline#extensions#tabline#show_close_button = 0
 
 " vim-gitgutter
 let g:gitgutter_sign_column_always = 1

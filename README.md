@@ -36,6 +36,11 @@ dotfiles
 
 ## Vim Changelog
 
+5.19.2015
+- Show tab number in tabline as opposed to number of splits (default).
+- Don't show buffers in tabline.
+- Don't show "close" trigger in tabline.
+
 4.2.2015
 - The '%' operator will now take you to matching HTML tags and more.
 - Auto closing brackets, quotes, parenthesis.
