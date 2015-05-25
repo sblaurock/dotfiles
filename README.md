@@ -36,7 +36,10 @@ dotfiles
 
 ## Vim Changelog
 
-5.19.2015
+5.25.15
+- Updated code fold settings.
+
+5.19.15
 - Show tab number in tabline as opposed to number of splits (default).
 - Don't show buffers in tabline.
 - Don't show "close" trigger in tabline.

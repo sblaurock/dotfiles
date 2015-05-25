@@ -70,12 +70,14 @@ set showcmd " Show information about current command
 set cursorline " Highlight line containing cursor
 set ttyfast " Prevent slow scrolling
 set incsearch " Match on keypress instead of enter
-set nofoldenable " Disable code folding
 set shortmess=at " Shorter messages
 set whichwrap=<,>,h,l " Allow cursor to wrap across lines
 set history=1000 " Increase command history
 set pastetoggle=<leader>V " Set paste mode toggle key binding
 set autoread " Reload files modified outside of Vim
+set foldmethod=indent " Fold based on indending
+set foldnestmax=10 " Deepest fold is 10 levels deep
+set nofoldenable " Don't fold by default
 set wildignore+=*/.hg/*,*/.svn/*,*/tmp/*,*.so,*.swp,*.zip,*.mp3,*/node_modules/*,*.DS_Store
 colorscheme spacegray
 
@@ -392,7 +394,6 @@ augroup json_autocmd
   autocmd FileType json set textwidth=78 shiftwidth=2
   autocmd FileType json set softtabstop=2 tabstop=8
   autocmd FileType json set expandtab
-  autocmd FileType json set foldmethod=syntax
 augroup END
 
 " ag.vim
