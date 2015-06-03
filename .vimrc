@@ -116,6 +116,12 @@ vnoremap > >gv
 :command! Wq wq
 :command! W w
 :command! Q q
+map q: :q
+
+" Jump to end of line when yanking / pasting
+vnoremap <silent> y y`]
+vnoremap <silent> p p`]
+nnoremap <silent> p p`]
 
 " Clear highlighted matches
 nnoremap // :noh<CR>
@@ -127,6 +133,8 @@ nmap <Space> i
 nnoremap ; :
 " Force write
 cmap w!! w !sudo tee % >/dev/null
+" Paste over selection without yanking removed text
+xnoremap p pgvy
 
 " Toggle file tree
 nmap <leader>f :NERDTreeTabsToggle<CR>

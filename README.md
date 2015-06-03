@@ -36,6 +36,12 @@ dotfiles
 
 ## Vim Changelog
 
+6.3.2015
+- Jump to end of line when yanking and pasting.
+- Typo correction for ‘q:’.
+- Provide zsh binding for switching to foreground application (Ctrl-Z).
+- Paste over selection without yanking removed text.
+
 5.19.2015
 - Show tab number in tabline as opposed to number of splits (default).
 - Don't show buffers in tabline.
