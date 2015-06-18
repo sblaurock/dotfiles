@@ -411,3 +411,6 @@ endif
 
 " delimitMate
 let delimitMate_expand_cr = 1
+
+" Source custom vimrc file
+source ~/.vimrc-custom

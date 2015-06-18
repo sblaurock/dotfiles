@@ -36,7 +36,10 @@ dotfiles
 
 ## Vim Changelog
 
-6.3.2015
+6.18.15
+- Add `.vimrc-custom` file for overrides to be sourced by main.
+
+6.3.15
 - Jump to end of line when yanking and pasting.
 - Typo correction for ‘q:’.
 - Provide zsh binding for switching to foreground application (Ctrl-Z).
