@@ -33,12 +33,14 @@ Plugin 'tpope/vim-surround'
 Plugin 'deris/vim-shot-f'
 Plugin 'raimondi/delimitmate'
 Plugin 'edsono/vim-matchit'
+Plugin 'airblade/vim-rooter'
 
 call vundle#end()
 
 syntax on " Syntax highlighting
 filetype plugin indent on " Filetype detection
 let mapleader="," " Remap leader key
+let colemak=0 " Use Colemak bindings for window management
 set encoding=utf-8 " Use UTF-8 encoding
 set modelines=0 " No file specific variables
 set hidden " Allow switching from unsaved buffers
@@ -138,8 +140,38 @@ cmap w!! w !sudo tee % >/dev/null
 " Paste over selection without yanking removed text
 xnoremap p pgvy
 
+" Window management
+nnoremap <leader>W :call WinCreate('k')<CR>
+nnoremap <leader>A :call WinCreate('h')<CR>
+nnoremap <leader>K :call WinCreate('k')<CR>
+nnoremap <leader>H :call WinCreate('h')<CR>
+if(colemak == 0)
+  nnoremap <leader>S :call WinCreate('j')<CR>
+  nnoremap <leader>D :call WinCreate('l')<CR>
+  nnoremap <leader>J :call WinCreate('j')<CR>
+  nnoremap <leader>L :call WinCreate('l')<CR>
+else
+  nnoremap <leader>R :call WinCreate('j')<CR>
+  nnoremap <leader>S :call WinCreate('l')<CR>
+endif
+nnoremap <leader>w :wincmd k<CR>
+nnoremap <leader>a :wincmd h<CR>
+nnoremap <leader>k :wincmd k<CR>
+nnoremap <leader>h :wincmd h<CR>
+if(colemak == 0)
+  nnoremap <leader>s :wincmd j<CR>
+  nnoremap <leader>d :wincmd l<CR>
+  nnoremap <leader>j :wincmd j<CR>
+  nnoremap <leader>l :wincmd l<CR>
+else
+  nnoremap <leader>r :wincmd j<CR>
+  nnoremap <leader>s :wincmd l<CR>
+endif
+
 " Toggle file tree
-nmap <leader>f :NERDTreeTabsToggle<CR>
+nnoremap <leader>f :NERDTreeTabsToggle<CR>
+" Find in file tree
+nnoremap <leader>F :NERDTreeFind<CR>
 " Fuzzy find
 nnoremap <leader>p :CtrlP<CR>
 " Fuzzy find (modified files)
@@ -147,9 +179,11 @@ nnoremap <leader>P :CtrlPModified<CR>
 " Open commands file in new tab
 nnoremap <leader>m :tabnew ~/.vim/commands<CR>
 " Ack
-nnoremap <leader>a :Ack 
-" Check syntax
-nnoremap <leader>s :SyntasticToggleMode<CR>
+nnoremap <leader>? :Ack 
+" Toggle syntax check mode
+nnoremap <leader>i :SyntasticToggleMode<CR>
+" Remove trailing whitespace
+nnoremap <leader>I :let _s=@/<Bar>:%s/\s\+$//e<Bar>:let @/=_s<Bar>:nohl<CR>
 " Toggle indentation (tabs / spaces)
 nnoremap <leader>\ :call <SID>TabToggle()<CR>
 " Toggle indentation size (2 / 4)
@@ -186,8 +220,6 @@ noremap <leader>9 9gt
 noremap <leader>0 :tablast<cr>
 " Move focus between windows
 nnoremap <leader>` <C-W><C-W>
-" Remove trailing whitespace
-nnoremap <leader>w :let _s=@/<Bar>:%s/\s\+$//e<Bar>:let @/=_s<Bar>:nohl<CR>
 " `open`
 nnoremap <leader>o :!open .<CR>
 " Compare staged changes against master
@@ -209,6 +241,9 @@ nnoremap <leader>gu :Gpush<CR>
 " Toggle comment block
 nnoremap <leader>/ :call NERDComment(0, "toggle")<CR>
 vnoremap <leader>/ :call NERDComment(0, "toggle")<CR>
+" Go to function definition
+nnoremap <leader>. :call GotoDefinition()<CR>
+vnoremap <leader>. <c-o>:call GotoDefinition()<CR>
 
 " Disable automatic comment insertion
 augroup disable_comment_insertion
@@ -326,6 +361,25 @@ augroup highlight_whitespace
 augroup END
 call HighlightWhitespaceOn()
 
+" Go to function definition
+function! GotoDefinition()
+  let n = search("\\<".expand("<cword>")."\\>[^(]*([^)]*)\\s*\\n*\\s*{")
+endfunction
+
+" Create window in supplied direction
+function! WinCreate(key)
+  let t:curwin = winnr()
+  exec "wincmd ".a:key
+  if (t:curwin == winnr())
+    if (match(a:key,'[jk]'))
+      wincmd v
+    else
+      wincmd s
+    endif
+    exec "wincmd ".a:key
+  endif
+endfunction
+
 " nerdtree
 let g:NERDTreeShowHidden = 1
 let g:NERDTreeRespectWildIgnore = 1
@@ -406,7 +460,7 @@ augroup END
 
 " ag.vim
 if executable('ag')
-  nnoremap <leader>a :Ag 
+  nnoremap <leader>? :Ag 
 endif
 
 " delimitMate
