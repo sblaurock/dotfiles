@@ -58,6 +58,7 @@ dotfiles
 - Changed `,a` ('ack' and 'ag') mapping to `,?`.
 - Changed `,s` (toggle syntax check mode) mapping to `,i`.
 - Changed `,w` (strip trailing whitespace) mapping to `,I`.
+- Update fuzzy finder default action for `enter` to open in current window.
 
 6.18.15
 - Add `.vimrc-custom` file for overrides to be sourced by main.

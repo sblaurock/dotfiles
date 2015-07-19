@@ -408,8 +408,10 @@ let g:ctrlp_custom_ignore = {
   \ 'file': '\v\.(so|swp|zip|mp3|DS_Store|mov|woff|svg|jpg|jpeg|png|ttf|eot)$'
   \ }
 let g:ctrlp_prompt_mappings = {
-  \ 'AcceptSelection("e")': [],
-  \ 'AcceptSelection("t")': ['<c-t>', '<cr>', '<2-LeftMouse>'],
+  \ 'AcceptSelection("h")': [],
+  \ 'AcceptSelection("v")': [],
+  \ 'AcceptSelection("e")': ['<cr>', '<2-LeftMouse>'],
+  \ 'AcceptSelection("t")': ['<c-t>', '<c-cr>', '<s-cr>', '<s-t>', '<RightMouse>'],
   \ }
 if executable('ag')
   let g:ctrlp_user_command = 'ag %s -l --nocolor -g ""'
