@@ -34,6 +34,7 @@ Plugin 'deris/vim-shot-f'
 Plugin 'raimondi/delimitmate'
 Plugin 'edsono/vim-matchit'
 Plugin 'airblade/vim-rooter'
+Plugin 'marijnh/tern_for_vim'
 
 call vundle#end()
 
@@ -238,12 +239,13 @@ nnoremap <leader>gc :Gcommit<CR>
 nnoremap <leader>gp :Gpull<CR>
 " `git push`
 nnoremap <leader>gu :Gpush<CR>
+" Jump to definition of item under cursor (JavaScript)
+nnoremap <leader>. :TernDef<CR>
+" Find refererences to item under cursor (JavaScript)
+nnoremap <leader>> :TernRefs<CR>
 " Toggle comment block
 nnoremap <leader>/ :call NERDComment(0, "toggle")<CR>
 vnoremap <leader>/ :call NERDComment(0, "toggle")<CR>
-" Go to function definition
-nnoremap <leader>. :call GotoDefinition()<CR>
-vnoremap <leader>. <c-o>:call GotoDefinition()<CR>
 
 " Disable automatic comment insertion
 augroup disable_comment_insertion
@@ -361,11 +363,6 @@ augroup highlight_whitespace
 augroup END
 call HighlightWhitespaceOn()
 
-" Go to function definition
-function! GotoDefinition()
-  let n = search("\\<".expand("<cword>")."\\>[^(]*([^)]*)\\s*\\n*\\s*{")
-endfunction
-
 " Create window in supplied direction
 function! WinCreate(key)
   let t:curwin = winnr()
@@ -437,6 +434,7 @@ let g:indentLine_char = '¦'
 
 " YouCompleteMe
 let g:ycm_complete_in_strings = 0
+let g:ycm_collect_identifiers_from_tags_files = 1
 let g:ycm_seed_identifiers_with_syntax = 1
 let g:ycm_filetype_blacklist = { 'gitcommit' : 1 }
 
@@ -469,4 +467,6 @@ endif
 let delimitMate_expand_cr = 1
 
 " Source custom vimrc file
-source ~/.vimrc-custom
+if filereadable(expand("~/.vimrc-custom"))
+  source ~/.vimrc-custom
+endif

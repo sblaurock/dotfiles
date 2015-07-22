@@ -35,7 +35,8 @@ dotfiles
 | ,[1-9] | Navigate to tab _num_ |
 | ,0 | Navigate to last tab |
 | ,` | Move focus between windows |
-| ,. | Go to function definition |
+| ,. | Jump to definition of item under cursor (JavaScript) |
+| ,> | Find refererences to item under cursor (JavaScript) |
 | ,gd | Compare staged changes against master |
 | ,gh | View file on Github |
 | ,gH | Copy Github file URL to clipboard |
@@ -46,6 +47,12 @@ dotfiles
 | ,gu | `git push` |
 
 ## Vim Changelog
+
+7.22.15
+- Added 'term_for_vim' for enhanced autocompletion and code understanding.
+- `,.` binding now uses Tern to locate definitions.
+- Added `,>` binding to find references to item under cursor via Tern.
+- Ensure that custom Vim configuration file exists before sourcing it.
 
 7.19.15
 - Added window management bindings.
