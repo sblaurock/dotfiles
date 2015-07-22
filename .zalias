@@ -4,6 +4,9 @@ alias rsync='rsync --progress'
 # Restore saved Vim session
 alias vims='vim -S ~/.vim/session.vim'
 
+# Open modified files tracked by Git in Vim
+alias gim='vim $(git ls-files -m | grep -v "/build/") -p'
+
 # Clean all Git branches that have been merged to master (clean merged)
 alias gitcm='git checkout master; git pull origin master; git branch --merged | grep -v "\*" | xargs -n 1 git branch -d'
 
