@@ -48,6 +48,9 @@ dotfiles
 
 ## Vim Changelog
 
+7.23.15
+- Resolve issue where mouse selection did not work past a certain column (~220).
+
 7.22.15
 - Added 'term_for_vim' for enhanced autocompletion and code understanding.
 - `,.` binding now uses Tern to locate definitions.

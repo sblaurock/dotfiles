@@ -81,6 +81,7 @@ set autoread " Reload files modified outside of Vim
 set foldmethod=indent " Fold based on indending
 set foldnestmax=10 " Deepest fold is 10 levels deep
 set nofoldenable " Don't fold by default
+set ttymouse=sgr " Allow mouse usage past column maximum
 set wildignore+=*/.hg/*,*/.svn/*,*/tmp/*,*.so,*.swp,*.zip,*.mp3,*/node_modules/*,*.DS_Store
 colorscheme spacegray
 
