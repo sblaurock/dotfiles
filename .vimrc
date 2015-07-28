@@ -35,6 +35,7 @@ Plugin 'raimondi/delimitmate'
 Plugin 'edsono/vim-matchit'
 Plugin 'airblade/vim-rooter'
 Plugin 'marijnh/tern_for_vim'
+Plugin 'kshenoy/vim-signature'
 
 call vundle#end()
 

@@ -48,6 +48,9 @@ dotfiles
 
 ## Vim Changelog
 
+7.28.15
+- Added 'vim-signature' plugin to display marks in gutter.
+
 7.22.15
 - Added 'term_for_vim' for enhanced autocompletion and code understanding.
 - `,.` binding now uses Tern to locate definitions.
