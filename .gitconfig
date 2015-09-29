@@ -1,14 +1,15 @@
+[user]
+        ;name = Steve Blaurock
+        ;email = sblaurock@gmail.com
 [color]
         diff = auto
         status = auto
         branch = auto
         ui = true
-[user]
-        name = Steve Blaurock
-        email = sblaurock@gmail.com
 [core]
         excludesfile = ~/.gitignore_global
         editor = vim
+        pager = zsh -lc 'diff-highlight | stripdiff | less -r' -
 [alias]
         undo=reset --hard
         a=add --all
@@ -27,3 +28,25 @@
 [status]
         short = true
         branch = true
+[merge]
+        tool = opendiff
+[push]
+        default = current
+[color "diff-highlight"]
+        oldNormal = "red bold"
+        oldHighlight = "red bold 52"
+        newNormal = "green bold"
+        newHighlight = "green bold 22"
+[color "branch"]
+        current = yellow reverse
+        local = yellow
+        remote = green
+[color "diff"]
+        meta = yellow bold
+        frag = magenta bold
+        old = red bold
+        new = green bold
+[color "status"]
+        added = yellow
+        changed = green
+        untracked = cyan
