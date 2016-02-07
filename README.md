@@ -4,7 +4,7 @@ dotfiles
 
 For use with iTerm2 color scheme 'Twilight'.
 
-![Vim Screenshot](https://github.com/sblaurock/dotfiles/raw/master/vim-screenshot.png "Vim Screenshot")
+![Vim Screenshot](https://github.com/sblaurock/dotfiles/raw/master/vim-screenshot.jpg "Vim Screenshot")
 
 ## Vim Key Commands
 | Command | Action |
