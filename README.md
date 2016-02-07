@@ -1,10 +1,24 @@
-
 dotfiles
 ========
 
-For use with iTerm2 color scheme 'Twilight'.
+For use with [iTerm2 color scheme](https://github.com/mbadolato/iTerm2-Color-Schemes) 'Twilight'.
 
 ![Vim Screenshot](https://github.com/sblaurock/dotfiles/raw/master/vim-screenshot.jpg "Vim Screenshot")
+
+## Installation (OS X)
+```
+# Clone source repository
+cd ${HOME} && git clone --depth 1 https://github.com/sblaurock/dotfiles.git
+
+# Install dotfiles, dependencies (Zsh, Vundle, Powerline, Prezto) & Vim plugins
+cd dotfiles && chmod +x install.sh && ./install.sh
+
+# Build 'YouCompleteMe' Vim plugin
+cd ${HOME}/.vim/bundle/YouCompleteMe; chmod +x install.sh; ./install.sh
+
+# Activate 'Tern' autocompletion Vim plugin
+cd ${HOME}/.vim/bundle/tern_for_vim; npm install
+```
 
 ## Vim Key Commands
 | Command | Action |

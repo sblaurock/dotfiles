@@ -52,5 +52,8 @@ if [ ! -f "${HOME}/.vim/bundle/Vundle.vim" ] ; then
   git clone $REPO_VUNDLE ~/.vim/bundle/Vundle.vim
 fi
 
+# Install Vim plugins via Vundle
+vim +PluginInstall +qall
+
 echo "Installation complete."
 exit 0
