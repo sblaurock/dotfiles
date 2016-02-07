@@ -84,7 +84,12 @@ set foldnestmax=10 " Deepest fold is 10 levels deep
 set nofoldenable " Don't fold by default
 set ttymouse=sgr " Allow mouse usage past column maximum
 set wildignore+=*/.hg/*,*/.svn/*,*/tmp/*,*.so,*.swp,*.zip,*.mp3,*/node_modules/*,*.DS_Store
-colorscheme spacegray
+
+" Color scheme
+colorscheme alduin
+let g:alduin_Shout_Windhelm = 1
+highlight LineNr term=bold cterm=NONE ctermbg=NONE gui=NONE guibg=NONE
+highlight SpecialKey ctermfg=4
 
 " Save information across sessions
 set viminfo=%,'50
@@ -386,7 +391,7 @@ let g:NERDTreeMinimalUI = 1
 highlight Directory guifg=#FF0000 ctermfg=DarkBlue
 
 " vim-airline
-let g:airline_theme = 'wombat'
+let g:airline_theme = 'jellybeans'
 let g:airline#extensions#tabline#enabled = 1
 let g:airline_powerline_fonts = 1
 let g:airline#extensions#tabline#tab_nr_type = 1

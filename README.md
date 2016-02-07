@@ -1,6 +1,13 @@
+
 dotfiles
 ========
-| Vim Command | Action |
+
+For use with iTerm2 color scheme 'Twilight'.
+
+![Vim Screenshot](https://github.com/sblaurock/dotfiles/raw/master/vim-screenshot.png "Vim Screenshot")
+
+## Vim Key Commands
+| Command | Action |
 | --- | --- |
 | ,w or ,k | Move window focus up |
 | ,a or ,h | Move window focus left |
@@ -47,6 +54,9 @@ dotfiles
 | ,gu | `git push` |
 
 ## Vim Changelog
+
+1.29.16
+- Updated color scheme to customized variant of 'Alduin'.
 
 7.28.15
 - Added 'vim-signature' plugin to display marks in gutter.
