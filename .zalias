@@ -96,6 +96,25 @@ function extract() {
   fi
 }
 
+# Conduct a speed test
+function speedtest() {
+  local realm="${1:-useast}"
+
+  case $realm in
+    'useast')     location='http://speedtest.newark.linode.com/100MB-newark.bin'        ;;
+    'uswest')     location='http://speedtest.fremont.linode.com/100MB-fremont.bin'      ;;
+    'ussouth')    location='http://speedtest.atlanta.linode.com/100MB-atlanta.bin'      ;;
+    'uscentral')  location='http://speedtest.dallas.linode.com/100MB-dallas.bin'        ;;
+    'de')         location='http://speedtest.frankfurt.linode.com/100MB-frankfurt.bin'  ;;
+    'uk')         location='http://speedtest.london.linode.com/100MB-london.bin'        ;;
+    'sg')         location='http://speedtest.singapore.linode.com/100MB-singapore.bin'  ;;
+    'ja')         location='http://speedtest.tokyo.linode.com/100MB-tokyo.bin'          ;;
+    *)            location=$1                                                           ;;
+  esac
+
+  wget --output-document=/dev/null $location
+}
+
 # List all socket connections
 alias sockets='sudo lsof -i -P'
 
