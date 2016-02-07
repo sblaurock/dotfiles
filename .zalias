@@ -1,5 +1,14 @@
 # Implicit flags
 alias rsync='rsync --progress'
+alias mount='mount |column -t'
+alias jobs='jobs -l'
+alias ping='ping -c 5'
+alias wget='wget -c'
+
+# Always 'sudo' when rebooting
+if [ $UID -ne 0 ]; then
+  alias reboot='sudo reboot'
+fi
 
 # Restore saved Vim session
 alias vims='vim -S ~/.vim/session.vim'
@@ -28,9 +37,6 @@ alias lock='/System/Library/CoreServices/Menu\ Extras/User.menu/Contents/Resourc
 # Get public IP
 alias ip='dig +short myip.opendns.com @resolver1.opendns.com'
 
-# Get local IP
-alias localip='ipconfig getifaddr en1'
-
 # Flush Directory Service cache
 alias flush='dscacheutil -flushcache'
 
@@ -58,6 +64,48 @@ function google() {
 function largest() {
   find ${1:-.} -type f -exec ls -al {} \; | sort -nr -k5 | head -n 20
 }
+
+# Generate a random string of characters
+function strgen() {
+  local length="${1:-24}"
+  LC_CTYPE=C tr -dc 'A-Za-z0-9_' < /dev/urandom | head -c ${length} | xargs
+}
+
+# Get headers for request
+alias headers='curl -I'
+
+# Extract archive based on filetype
+function extract() {
+  if [ -f $1 ] ; then
+    case $1 in
+      *.tar.bz2)  tar xjf $1      ;;
+      *.tar.gz)   tar xzf $1      ;;
+      *.bz2)      bunzip2 $1      ;;
+      *.rar)      unrar e $1      ;;
+      *.gz)       gunzip $1       ;;
+      *.tar)      tar xf $1       ;;
+      *.tbz2)     tar xjf $1      ;;
+      *.tgz)      tar xzf $1      ;;
+      *.zip)      unzip $1        ;;
+      *.Z)        uncompress $1   ;;
+      *.7z)       7z x $1         ;;
+      *)          echo "'$1' cannot be extracted" ;;
+    esac
+  else
+    echo "'$1' is not a valid file"
+  fi
+}
+
+# List all socket connections
+alias sockets='sudo lsof -i -P'
+
+# Toggle display of hidden files within Finder
+alias showhidden='defaults write com.apple.finder AppleShowAllFiles TRUE; sudo killall Finder'
+alias hidehidden='defaults write com.apple.finder AppleShowAllFiles FALSE; sudo killall Finder'
+
+# Identify highest usage processes
+alias topmem='ps wwaxm -o pid,stat,vsize,rss,time,command | head -10'
+alias topcpu='ps wwaxr -o pid,stat,%cpu,time,command | head -10'
 
 # Source custom alias file
 if [[ -s "${ZDOTDIR:-$HOME}/.zalias-custom" ]]; then
