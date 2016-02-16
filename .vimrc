@@ -87,8 +87,8 @@ set ttymouse=sgr " Allow mouse usage past column maximum
 set wildignore+=*/.hg/*,*/.svn/*,*/tmp/*,*.so,*.swp,*.zip,*.mp3,*/node_modules/*,*.DS_Store
 
 " Color scheme
-colorscheme alduin
 let g:alduin_Shout_Windhelm = 1
+colorscheme alduin
 highlight LineNr term=bold cterm=NONE ctermbg=NONE gui=NONE guibg=NONE
 highlight SpecialKey ctermfg=4
 

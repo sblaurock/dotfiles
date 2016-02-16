@@ -31,8 +31,19 @@ alias gitbm='git checkout master; git pull origin master; git checkout -b "$@"'
 # Colorful Git log (color log)
 alias gitcl='git log --color --graph --pretty=format:"%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset" --abbrev-commit'
 
-# Lock OS
+# Lock OS (OS X)
 alias lock='/System/Library/CoreServices/Menu\ Extras/User.menu/Contents/Resources/CGSession -suspend'
+
+# Add space to Dock (OS X)
+function addspace() {
+  defaults write com.apple.dock persistent-apps -array-add '{"tile-type"="spacer-tile";}'
+  killall Dock
+}
+
+# Change directory to forefront Finder window (OS X)
+function finder() {
+  cd "`osascript -e 'tell app "Finder" to POSIX path of (insertion location as alias)'`"
+}
 
 # Get public IP
 alias ip='dig +short myip.opendns.com @resolver1.opendns.com'
@@ -48,11 +59,6 @@ function serve() {
   local port="${1:-8000}"
   open "http://localhost:${port}/"
   python -c $'import SimpleHTTPServer;\nmap = SimpleHTTPServer.SimpleHTTPRequestHandler.extensions_map;\nmap[""] = "text/plain";\nfor key, value in map.items():\n\tmap[key] = value + ";charset=UTF-8";\nSimpleHTTPServer.test();' "$port"
-}
-
-# Change directory to forefront Finder window
-function finder() {
-  cd "`osascript -e 'tell app "Finder" to POSIX path of (insertion location as alias)'`"
 }
 
 # Perform a Google search for query
