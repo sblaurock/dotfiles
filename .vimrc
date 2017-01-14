@@ -16,6 +16,7 @@ Plugin 'vim-airline/vim-airline-themes'
 Plugin 'airblade/vim-gitgutter'
 Plugin 'tpope/vim-fugitive'
 Plugin 'pangloss/vim-javascript'
+Plugin 'Valloric/YouCompleteMe'
 Plugin 'scrooloose/nerdcommenter'
 Plugin 'lilydjwg/colorizer'
 Plugin 'tpope/vim-sleuth'
@@ -438,6 +439,12 @@ let g:syntastic_mode_map = {
 " indentLine
 let g:indentLine_color_term = 239
 let g:indentLine_char = '¦'
+
+" YouCompleteMe
+let g:ycm_complete_in_strings = 0
+let g:ycm_collect_identifiers_from_tags_files = 1
+let g:ycm_seed_identifiers_with_syntax = 1
+let g:ycm_filetype_blacklist = { 'gitcommit' : 1 }
 
 " html5.vim
 let g:html5_event_handler_attributes_complete = 0

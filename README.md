@@ -69,9 +69,6 @@ cd ${HOME}/.vim/bundle/tern_for_vim; npm install
 
 ## Vim Changelog
 
-8.6.16
-- Remove 'YouCompleteMe' as it delays responsivity of Vim.
-
 1.29.16
 - Updated color scheme to customized variant of 'Alduin'.
 
