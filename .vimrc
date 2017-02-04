@@ -84,6 +84,7 @@ set foldmethod=indent " Fold based on indending
 set foldnestmax=10 " Deepest fold is 10 levels deep
 set nofoldenable " Don't fold by default
 set ttymouse=sgr " Allow mouse usage past column maximum
+set nocul " Don't highlight cursor line after jump
 set wildignore+=*/.hg/*,*/.svn/*,*/tmp/*,*.so,*.swp,*.zip,*.mp3,*/node_modules/*,*.DS_Store
 
 " Color scheme
