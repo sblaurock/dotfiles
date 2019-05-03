@@ -23,7 +23,6 @@ Plugin 'gcmt/wildfire.vim'
 Plugin 'tpope/vim-surround'
 Plugin 'deris/vim-shot-f'
 Plugin 'raimondi/delimitmate'
-Plugin 'edsono/vim-matchit'
 Plugin 'airblade/vim-rooter'
 Plugin 'kshenoy/vim-signature'
 
