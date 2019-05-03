@@ -5,37 +5,26 @@ set rtp+=~/.vim/bundle/Vundle.vim
 call vundle#begin()
 
 " Plugins
-Plugin 'mileszs/ack.vim'
 Plugin 'kien/ctrlp.vim'
 Plugin 'Yggdroot/indentLine'
-Plugin 'scrooloose/nerdtree'
-Plugin 'jistr/vim-nerdtree-tabs'
-Plugin 'scrooloose/syntastic'
 Plugin 'vim-airline/vim-airline'
 Plugin 'vim-airline/vim-airline-themes'
 Plugin 'airblade/vim-gitgutter'
-Plugin 'tpope/vim-fugitive'
-Plugin 'pangloss/vim-javascript'
-Plugin 'Valloric/YouCompleteMe'
-Plugin 'scrooloose/nerdcommenter'
 Plugin 'lilydjwg/colorizer'
 Plugin 'tpope/vim-sleuth'
 Plugin 'othree/html5.vim'
 Plugin 'hail2u/vim-css3-syntax'
 Plugin 'jelera/vim-javascript-syntax'
 Plugin 'elzr/vim-json'
+Plugin 'scrooloose/nerdcommenter'
 Plugin 'othree/javascript-libraries-syntax.vim'
-Plugin 'moll/vim-node'
-Plugin 'myhere/vim-nodejs-complete'
 Plugin 'jasoncodes/ctrlp-modified.vim'
 Plugin 'gcmt/wildfire.vim'
-Plugin 'rking/ag.vim'
 Plugin 'tpope/vim-surround'
 Plugin 'deris/vim-shot-f'
 Plugin 'raimondi/delimitmate'
 Plugin 'edsono/vim-matchit'
 Plugin 'airblade/vim-rooter'
-Plugin 'marijnh/tern_for_vim'
 Plugin 'kshenoy/vim-signature'
 
 call vundle#end()
@@ -141,8 +130,6 @@ nnoremap <silent> p p`]
 nnoremap // :noh<CR>
 " Disable 'Ex' mode.
 nnoremap Q <nop>
-" Enter insert mode
-nmap <Space> i
 " Save keystrokes
 nnoremap ; :
 " Force write
@@ -178,20 +165,12 @@ else
   nnoremap <leader>s :wincmd l<CR>
 endif
 
-" Toggle file tree
-nnoremap <leader>f :NERDTreeTabsToggle<CR>
-" Find in file tree
-nnoremap <leader>F :NERDTreeFind<CR>
 " Fuzzy find
 nnoremap <leader>p :CtrlP<CR>
 " Fuzzy find (modified files)
 nnoremap <leader>P :CtrlPModified<CR>
 " Open commands file in new tab
 nnoremap <leader>m :tabnew ~/.vim/commands<CR>
-" Ack
-nnoremap <leader>? :Ack 
-" Toggle syntax check mode
-nnoremap <leader>i :SyntasticToggleMode<CR>
 " Remove trailing whitespace
 nnoremap <leader>I :let _s=@/<Bar>:%s/\s\+$//e<Bar>:let @/=_s<Bar>:nohl<CR>
 " Toggle indentation (tabs / spaces)
@@ -232,26 +211,6 @@ noremap <leader>0 :tablast<cr>
 nnoremap <leader>` <C-W><C-W>
 " `open`
 nnoremap <leader>o :!open .<CR>
-" Compare staged changes against master
-nnoremap <leader>gd :Gdiff<CR>
-" View file on Github
-nnoremap <leader>gh :Gbrowse<CR>
-" Copy Github file URL to clipboard
-nnoremap <leader>gH :Gbrowse!<CR>
-" `git status`
-nnoremap <leader>gs :Gstatus<CR>
-" `git blame`
-nnoremap <leader>gb :Gblame<CR>
-" `git commit`
-nnoremap <leader>gc :Gcommit<CR>
-" `git pull`
-nnoremap <leader>gp :Gpull<CR>
-" `git push`
-nnoremap <leader>gu :Gpush<CR>
-" Jump to definition of item under cursor (JavaScript)
-nnoremap <leader>. :TernDef<CR>
-" Find refererences to item under cursor (JavaScript)
-nnoremap <leader>> :TernRefs<CR>
 " Toggle comment block
 nnoremap <leader>/ :call NERDComment(0, "toggle")<CR>
 vnoremap <leader>/ :call NERDComment(0, "toggle")<CR>
@@ -386,12 +345,6 @@ function! WinCreate(key)
   endif
 endfunction
 
-" nerdtree
-let g:NERDTreeShowHidden = 1
-let g:NERDTreeRespectWildIgnore = 1
-let g:NERDTreeMinimalUI = 1
-highlight Directory guifg=#FF0000 ctermfg=DarkBlue
-
 " vim-airline
 let g:airline_theme = 'jellybeans'
 let g:airline#extensions#tabline#enabled = 1
@@ -423,29 +376,9 @@ if executable('ag')
   let g:ctrlp_user_command = 'ag %s -l --nocolor -g ""'
 endif
 
-" Syntastic
-let g:syntastic_enable_signs = 1
-let g:syntastic_auto_jump = 0
-let g:syntastic_auto_loc_list = 1
-let g:syntastic_python_checkers = ['csslint']
-let g:syntastic_javascript_checkers = ['jshint']
-let g:syntastic_html_checkers = ['jshint']
-let g:syntastic_vim_checkers = ['vimlint']
-let g:syntastic_mode_map = {
-  \ 'mode': 'passive',
-  \ 'active_filetypes': [],
-  \ 'passive_filetypes': []
-  \ }
-
 " indentLine
 let g:indentLine_color_term = 239
 let g:indentLine_char = '¦'
-
-" YouCompleteMe
-let g:ycm_complete_in_strings = 0
-let g:ycm_collect_identifiers_from_tags_files = 1
-let g:ycm_seed_identifiers_with_syntax = 1
-let g:ycm_filetype_blacklist = { 'gitcommit' : 1 }
 
 " html5.vim
 let g:html5_event_handler_attributes_complete = 0
@@ -466,11 +399,6 @@ augroup json_autocmd
   autocmd FileType json set softtabstop=2 tabstop=8
   autocmd FileType json set expandtab
 augroup END
-
-" ag.vim
-if executable('ag')
-  nnoremap <leader>? :Ag 
-endif
 
 " delimitMate
 let delimitMate_expand_cr = 1

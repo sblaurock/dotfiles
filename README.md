@@ -13,13 +13,6 @@ cd ${HOME} && git clone --depth 1 https://github.com/sblaurock/dotfiles.git
 # Install dotfiles, dependencies (Zsh, Vundle, Powerline, Prezto) & Vim plugins
 cd dotfiles && chmod +x install.sh && ./install.sh
 
-# Build 'YouCompleteMe' Vim plugin
-cd ${HOME}/.vim/bundle/YouCompleteMe; chmod +x install.sh; ./install.sh
-
-# Activate 'Tern' autocompletion Vim plugin
-cd ${HOME}/.vim/bundle/tern_for_vim; npm install
-```
-
 ## Vim Key Commands
 | Command | Action |
 | --- | --- |
@@ -31,13 +24,9 @@ cd ${HOME}/.vim/bundle/tern_for_vim; npm install
 | ,A or ,H | Create new window left |
 | ,S or ,J | Create new window down |
 | ,D or ,L | Create new window right |
-| ,f | Toggle file tree |
-| ,F | Find current file in file tree |
 | ,p | Fuzzy file find |
 | ,P | Fuzzy file find (modified files) |
 | ,m | Open command shortcuts reference file |
-| ,? | ag (ack) |
-| ,i | Toggle syntax check mode |
 | ,I | Strip trailing whitespace |
 | ,\ | Toggle tabs / spaces |
 | ,\| | Toggle indentation size |
@@ -56,18 +45,11 @@ cd ${HOME}/.vim/bundle/tern_for_vim; npm install
 | ,[1-9] | Navigate to tab _num_ |
 | ,0 | Navigate to last tab |
 | ,` | Move focus between windows |
-| ,. | Jump to definition of item under cursor (JavaScript) |
-| ,> | Find refererences to item under cursor (JavaScript) |
-| ,gd | Compare staged changes against master |
-| ,gh | View file on Github |
-| ,gH | Copy Github file URL to clipboard |
-| ,gs | `git status` |
-| ,gb | `git blame` |
-| ,gc | `git commit` |
-| ,gp | `git pull` |
-| ,gu | `git push` |
 
 ## Vim Changelog
+
+5.3.19
+- Remove plugins that don't find use, simplify configuration
 
 1.29.16
 - Updated color scheme to customized variant of 'Alduin'.
