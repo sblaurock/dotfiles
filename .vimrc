@@ -356,6 +356,9 @@ let g:airline#extensions#tabline#show_close_button = 0
 " vim-gitgutter
 set signcolumn=yes
 let g:gitgutter_realtime = 1
+highlight GitGutterAdd    guifg=#009900 guibg=#1C1C1C ctermfg=2 ctermbg=0
+highlight GitGutterChange guifg=#bbbb00 guibg=#1C1C1C ctermfg=3 ctermbg=0
+highlight GitGutterDelete guifg=#ff2222 guibg=#1C1C1C ctermfg=1 ctermbg=0
 
 " ctrlp.vim
 let g:ctrlp_regexp = 1
