@@ -1,7 +1,7 @@
 dotfiles
 ========
 
-For use with [iTerm2 color scheme](https://github.com/mbadolato/iTerm2-Color-Schemes) 'Twilight'.
+For use with [iTerm2 color scheme](https://github.com/mbadolato/iTerm2-Color-Schemes) 'Twilight'. Use `#1c1c1c` for terminal background and ANSI "black" value.
 
 ![Vim Screenshot](https://github.com/sblaurock/dotfiles/raw/master/vim-screenshot.jpg "Vim Screenshot")
 
