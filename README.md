@@ -48,6 +48,11 @@ cd dotfiles && chmod +x install.sh && ./install.sh
 
 ## Vim Changelog
 
+2.4.21
+- Update commands to be compatible with Big Sur
+- Migrate from agnoster to powerlevel10k
+- Fix bug with gutter background color
+
 5.3.19
 - Remove plugins that don't find use, simplify configuration
 

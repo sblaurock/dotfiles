@@ -29,7 +29,7 @@ zstyle ':prezto:load' pmodule \
   'history-substring-search'
 
 # Theme
-zstyle ':prezto:module:prompt' theme 'agnoster'
+zstyle ':prezto:module:prompt' theme 'powerlevel10k'
 
 # Set key binding style
 zstyle ':prezto:module:editor' key-bindings 'vi'

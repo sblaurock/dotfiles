@@ -31,8 +31,8 @@ alias gitbm='git checkout master; git pull origin master; git checkout -b "$@"'
 # Colorful Git log (color log)
 alias gitcl='git log --color --graph --pretty=format:"%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset" --abbrev-commit'
 
-# Lock OS (OS X)
-alias lock='/System/Library/CoreServices/Menu\ Extras/User.menu/Contents/Resources/CGSession -suspend'
+# Put display to sleep (OS X)
+alias sleep='pmset displaysleepnow'
 
 # Add space to Dock (OS X)
 function addspace() {
@@ -74,7 +74,7 @@ function largest() {
 # Generate a random string of characters
 function strgen() {
   local length="${1:-24}"
-  LC_CTYPE=C tr -dc 'A-Za-z0-9_' < /dev/urandom | head -c ${length} | xargs
+  openssl rand -hex ${length}
 }
 
 # Get headers for request
@@ -100,25 +100,6 @@ function extract() {
   else
     echo "'$1' is not a valid file"
   fi
-}
-
-# Conduct a speed test
-function speedtest() {
-  local realm="${1:-useast}"
-
-  case $realm in
-    'useast')     location='http://speedtest.newark.linode.com/100MB-newark.bin'        ;;
-    'uswest')     location='http://speedtest.fremont.linode.com/100MB-fremont.bin'      ;;
-    'ussouth')    location='http://speedtest.atlanta.linode.com/100MB-atlanta.bin'      ;;
-    'uscentral')  location='http://speedtest.dallas.linode.com/100MB-dallas.bin'        ;;
-    'de')         location='http://speedtest.frankfurt.linode.com/100MB-frankfurt.bin'  ;;
-    'uk')         location='http://speedtest.london.linode.com/100MB-london.bin'        ;;
-    'sg')         location='http://speedtest.singapore.linode.com/100MB-singapore.bin'  ;;
-    'ja')         location='http://speedtest.tokyo.linode.com/100MB-tokyo.bin'          ;;
-    *)            location=$1                                                           ;;
-  esac
-
-  wget --output-document=/dev/null $location
 }
 
 # List all socket connections
