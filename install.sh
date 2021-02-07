@@ -4,7 +4,6 @@ shopt -s dotglob nullglob
 
 ZSH='/usr/local/bin/zsh'
 REPO_PREZTO='https://github.com/sorin-ionescu/prezto.git'
-REPO_POWERLINE_FONTS='https://github.com/powerline/fonts.git'
 REPO_VUNDLE='https://github.com/gmarik/Vundle.vim.git'
 
 # Resolve dependency: Zsh
@@ -29,14 +28,6 @@ if [ ! -d "${HOME}/.zprezto" ] ; then
   rm "${HOME}/.zprezto/runcoms/README.md"
   zsh -c 'setopt EXTENDED_GLOB; for rcfile in "${ZDOTDIR:-$HOME}"/.zprezto/runcoms/* ; do ; ln -s "$rcfile" "${ZDOTDIR:-$HOME}/.${rcfile:t}" ; done'
   git pull && git submodule update --init --recursive
-fi
-
-# Resolve dependency: Powerline fonts
-if [ ! -f "${HOME}/Library/Fonts/Anonymice Powerline.ttf" ] ; then
-  git clone $REPO_POWERLINE_FONTS "${HOME}/.powerline-fonts"
-  cd "${HOME}/.powerline-fonts"
-  ./install.sh
-  rm -rf "${HOME}/.powerline-fonts"
 fi
 
 # Copy config files to home directory
